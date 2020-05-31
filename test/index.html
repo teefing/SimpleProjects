@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .triangle {
+        display: inline-block;
+        font-size: 0;
+        overflow: hidden;
+      }
+
+      .triangle:before {
+        content: "";
+        position: relative;
+        display: inline-block;
+        border: 25px solid transparent;
+      }
+
+      .triangle-up {
+        position: relative;
+        top: 2px;
+        border-top-left-radius: 50%;
+        border-top-right-radius: 50%;
+      }
+      .triangle-up:before {
+        bottom: 2px;
+        border-top-width: 0;
+        border-bottom-width: 50px;
+        border-bottom-color: rgb(181, 181, 181);
+      }
+
+      .triangle-right {
+        position: relative;
+        right: 2px;
+        border-top-right-radius: 50%;
+        border-bottom-right-radius: 50%;
+      }
+      .triangle-right:before {
+        left: 2px;
+        border-right-width: 0;
+        border-left-width: 50px;
+        border-left-color: rgb(181, 181, 181);
+      }
+
+      .triangle-down {
+        position: relative;
+        bottom: 2px;
+        border-bottom-right-radius: 50%;
+        border-bottom-left-radius: 50%;
+      }
+      .triangle-down:before {
+        top: 2px;
+        border-bottom-width: 0;
+        border-top-width: 50px;
+        border-top-color: rgb(181, 181, 181);
+      }
+
+      .triangle-left {
+        position: relative;
+        left: 2px;
+        border-top-left-radius: 50%;
+        border-bottom-left-radius: 50%;
+      }
+      .triangle-left:before {
+        right: 2px;
+        border-left-width: 0;
+        border-right-width: 50px;
+        border-right-color: rgba(181, 181, 181, 1);
+      }
+    </style>
+  </head>
+  <body>
+    <ul><li><a>菜单1</a><ul><li><a>菜单1-1</a><ul><li><a>菜单1-1-1</a></li></ul><ul><li><a>菜单1-1-2</a></li></ul></li></ul><ul><li><a>菜单1-2</a></li></ul></li></ul><ul><li><a>菜单2</a><ul><li><a>菜单2-1</a></li></ul><ul><li><a>菜单2-2</a><ul><li><a>菜单2-2-1</a><ul><li><a>菜单2-2-1-1</a></li></ul></li></ul><ul><li><a>菜单2-2-2</a></li></ul></li></ul></li></ul>
+  </body>
+</html>
