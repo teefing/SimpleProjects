@@ -14,4 +14,4 @@ function print(add) {
   console.log(this.value + add);
 }
 
-print.apply(obj, [2]);
+print.myApply(obj, [2]);
