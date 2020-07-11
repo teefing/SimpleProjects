@@ -1,6 +1,12 @@
-// const test = require('./test1.js')
-var test = {
-  temp: 1
-}
+const tuple = <T extends string[]>(...args: T) => args;
 
-console.log(test.temp);
+const ButtonTypes = tuple(
+  "default",
+  "primary",
+  "ghost",
+  "dashed",
+  "link",
+  "text"
+);
+
+type ButtonType = typeof ButtonTypes[number];

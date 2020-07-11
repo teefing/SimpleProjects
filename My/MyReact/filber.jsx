@@ -99,7 +99,6 @@ function commitWork(fiber) {
     domParent.removeChild(fiber.dom);
   }
 
-  domParent.appendChild(fiber.dom);
   commitWork(fiber.child);
   commitWork(fiber.sibling);
 }

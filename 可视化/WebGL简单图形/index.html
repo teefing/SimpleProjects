@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="300" height="300"></canvas>
+  </body>
+</html>
+<script>
+
+  // 步骤一：创建WebGL上下文
+  const canvas = document.querySelector("canvas");
+  const gl = canvas.getContext("webgl");
+
+  // 步骤二：创建WebGL程序
+  /** 顶点着色器, 注意每一句都要加上分号 */
+  const vertex = `
+    attribute vec2 position;
+    varying vec3 color;
+
+    void main(){
+      gl_PointSize = 1.0;
+      color = vec3(0.5 + position * 0.5, 0.0);
+      gl_Position = vec4(position * 0.5, 1.0, 1.0);
+    }
+  `;
+  /** 片元着色器 */
+
+  const fragment = `
+      precision mediump float;
+      varying vec3 color;
+      
+      void main()
+      {
+        gl_FragColor = vec4(color, 1.0);
+      }    
+    `;
+
+  /**
+   * 将顶点着色器和片元着色器代码片段生成shader对象
+   */
+  // 创建一个顶点着色器
+  const vertexShader = gl.createShader(gl.VERTEX_SHADER);
+  // 将顶点着色器代码与顶点着色器关联
+  gl.shaderSource(vertexShader, vertex);
+  // 编译顶点着色器
+  gl.compileShader(vertexShader);
+
+  // 同理
+  const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+  gl.shaderSource(fragmentShader, fragment);
+  gl.compileShader(fragmentShader);
+
+  // 创建WebGLProgram对象
+  const program = gl.createProgram();
+  // 将着色器关联到program对象上
+  gl.attachShader(program, vertexShader);
+  gl.attachShader(program, fragmentShader);
+  gl.linkProgram(program);
+  // 选择启用这个WebGLProgram对象
+  gl.useProgram(program);
+
+  // 生成类型化数组
+  const points = new Float32Array([-1, -1, 0, 1, 1, -1]);
+
+  // 步骤三：将数据写入缓冲区
+  // 创建一个缓存对象
+  const bufferId = gl.createBuffer();
+  // 将创建的缓存对象绑定为当前操作对象
+  gl.bindBuffer(gl.ARRAY_BUFFER, bufferId);
+  // 将当前数据写入缓存对象
+  gl.bufferData(gl.ARRAY_BUFFER, points, gl.STATIC_DRAW);
+
+  // 步骤四：将缓冲区数据读取到GPU
+  // 获取顶点着色器中的position变量的地址
+  const vPosition = gl.getAttribLocation(program, "position");
+  // 给变量设置长度和类型
+  gl.vertexAttribPointer(vPosition, 2, gl.FLOAT, false, 0, 0);
+  // 激活这个变量
+  gl.enableVertexAttribArray(vPosition);
+
+  // 步骤五：执行着色器程序完成绘制
+  // 将当前画布内容清除
+  gl.clear(gl.COLOR_BUFFER_BIT);
+  // 使用三角形为图元绘制
+  gl.drawArrays(gl.TRIANGLES, 0, points.length / 2);
+</script>
