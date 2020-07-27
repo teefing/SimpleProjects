@@ -1,5 +1,4 @@
-Function.prototype.myCall = function (context) {
-  context = context || window;
+Function.prototype.myCall = function (context = window) {
   context.fn = this;
   const args = [...arguments].slice(1);
   const res = context.fn(...args);
