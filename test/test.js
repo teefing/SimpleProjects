@@ -1,29 +1,26 @@
-function throttle (fn, timeout = 200) {
-  let lastTime = Date.now()
-  let cur;
-  return function cb (args) {
-    cur = Date.now()
-    if (cur - lastTime >= timeout) {
-      fn.apply(this, args)
-      lastTime = cur
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isValid = function (s) {
+  const stack = [];
+  let arr = s.split("");
+  let char;
+  let m = {
+    ")": "(",
+    "}": "{",
+    "]": "[",
+  };
+  for (let i = 0; i < s.length; i++) {
+    char = s[i];
+    if (Object.keys(m).includes(char)) {
+      if (m[char] !== stack.pop()) return false;
+    } else {
+      stack.push(char);
     }
   }
-}
 
-let obj = {
-  value: 1
-}
+  return stack.length === 0;
+};
 
-function print () {
-  console.log(this.value);
-}
-
-
-
-const printThrottled = throttle(print.bind(obj), 1000)
-
-
-// 16毫秒执行一次printThrottled方法
-setInterval(() => {
-  printThrottled()
-}, 16);
+console.log(isValid('({})'));

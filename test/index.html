@@ -1,28 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <style>
-    svg {
-      width: 50px;
-      height: 50px;
-    }
-  </style>
-  <body>
-    <svg viewBox="0 0 95 100">
-      <rect x="0" y="0" width="20" height="100" fill="#feac5e">
-        <animateTransform
-          attributeName="transform"
-          from="translate(0 50) scale(1 1) translate(0 -50)"
-          to="translate(0 50) scale(1 0.5) translate(0 -50)"
-          dur="2s"
-          repeatCount="indefinite"
-        ></animateTransform>
-      </rect>
-    </svg>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p id="one">111</p>
+</body>
 </html>
-<script></script>
+<script>
+  let span = document.createElement('span')
+  span.textContent = '222'
+  one.append(span)
+</script>
