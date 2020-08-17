@@ -252,19 +252,20 @@ const Teact = {
 /** @jsx Teact.createElement */ // 这样注释后，当babel转译jsx时，它将使用我们定义的功能
 const container = document.getElementById('root');
 
-const rerender = (value) => {
+const reRender = (value) => {
   const updateValue = (e) => {
-    rerender(e.target.value);
+    reRender(e.target.value);
   };
 
   const element = (
     <div>
       <input onInput={updateValue} value={value} />
       <h2>Hello {value}</h2>
+      {value && <div>something</div>}
     </div>
   );
   Teact.render(element, container);
 };
 
 
-rerender('World');
+reRender('World');

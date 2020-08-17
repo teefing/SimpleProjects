@@ -10,7 +10,23 @@ function throttle(fn, timeout = 200) {
   };
 }
 
-let obj = {
+function throttleSetTimeOutVersion(fn, timeout = 1000, immediate = false) {
+  let timer = null;
+  let __immediate = immediate;
+  return function (...args) {
+    if (__immediate) {
+      fn.call(this, ...args);
+      __immediate = false;
+    }
+    if (timer) return;
+    timer = setTimeout(() => {
+      fn.call(this, ...args);
+      timer = null;
+    }, timeout);
+  };
+}
+
+const obj = {
   value: 1,
 };
 

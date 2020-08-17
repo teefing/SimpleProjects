@@ -1,23 +1,23 @@
-const PENDING = "pending";
-const RESOLVED = "resolved";
-const REJECTED = "rejected";
+const PENDING = 'pending';
+const RESOLVED = 'resolved';
+const REJECTED = 'rejected';
 
 const resolutionProcedure = (promise2, x, resolve, reject) => {
   if (promise2 === x) {
-    return reject(new TypeError("Error"));
+    return reject(new TypeError('Error'));
   }
 
   if (x instanceof MyPromise) {
-    x.then(function (value) {
+    x.then((value) => {
       resolutionProcedure(promise2, value, resolve, reject);
     }, reject);
   }
 
   let called = false;
-  if (x !== null && (typeof x === "object" || typeof x === "function")) {
+  if (x !== null && (typeof x === 'object' || typeof x === 'function')) {
     try {
-      let then = x.then;
-      if (typeof then === "function") {
+      const { then } = x;
+      if (typeof then === 'function') {
         then.call(
           x,
           (y) => {
@@ -29,7 +29,7 @@ const resolutionProcedure = (promise2, x, resolve, reject) => {
             if (called) return;
             called = true;
             reject(e);
-          }
+          },
         );
       } else {
         resolve(x);
@@ -56,6 +56,15 @@ class MyPromise {
   rejectedCallbacks = [];
 
   constructor(fn) {
+    const reject = (value) => {
+      setTimeout(() => {
+        if (this.state === PENDING) {
+          this.state = REJECTED;
+          this.value = value;
+          this.resolvedCallbacks.map((cb) => cb(this.value));
+        }
+      }, 0);
+    };
     const resolve = (value) => {
       if (value instanceof MyPromise) {
         return value.then(resolve, reject);
@@ -65,18 +74,8 @@ class MyPromise {
           this.state = RESOLVED;
           this.value = value;
           this.resolvedCallbacks.map((cb) => {
-            cb(this.value)
+            cb(this.value);
           });
-        }
-      }, 0);
-    };
-
-    const reject = (value) => {
-      setTimeout(() => {
-        if (this.state === PENDING) {
-          this.state = REJECTED;
-          this.value = value;
-          this.resolvedCallbacks.map((cb) => cb(this.value));
         }
       }, 0);
     };
@@ -89,20 +88,19 @@ class MyPromise {
   }
 
   then = (onFulfilled, onRejected) => {
-    let promise2
-    onFulfilled = typeof onFulfilled === "function" ? onFulfilled : (v) => v;
-    onRejected =
-      typeof onRejected === "function"
-        ? onRejected
-        : (r) => {
-            throw r;
-          };
+    let promise2;
+    onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : (v) => v;
+    onRejected = typeof onRejected === 'function'
+      ? onRejected
+      : (r) => {
+        throw r;
+      };
     if (this.state === PENDING) {
       return (promise2 = new MyPromise((resolve, reject) => {
         this.resolvedCallbacks.push(() => {
           try {
             const x = onFulfilled(this.value);
-            
+
             resolutionProcedure(promise2, x, resolve, reject);
           } catch (r) {
             reject(r);
@@ -156,6 +154,7 @@ new MyPromise((resolve, reject) => {
   .then((val) => {
     console.log(1);
     console.log(val);
+    return 89;
   })
   .then((val) => {
     console.log(2);
