@@ -1,28 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>file2Blob</title>
+    <title></title>
   </head>
-
+  <style>
+    body {
+    }
+    div {
+      width: 100px;
+      height: 100px;
+    }
+    .zero {
+      background-color: #fff;
+    }
+    .one {
+      position: relative;
+      z-index: 1;
+      transform: translateZ(0);
+      background-color: white;
+    }
+    .two {
+      position: relative;
+      top: -20px;
+      z-index: 2;
+      left: 90px;
+      background-color: white;
+      transform: translateZ(0);
+    }
+    .three {
+      position: relative;
+      top: -250px;
+      left: 20px;
+      z-index: 3;
+      background-color: white;
+    }
+  </style>
   <body>
-    <input type="file" id="file" />
+    <div class="zero"></div>
+    <div class="one"></div>
+    <div class="two"></div>
+    <div class="three"></div>
   </body>
 </html>
 <script>
-  function file2Blob(file) {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-      fileReader.onload = (e) => {
-        resolve(e.target.result);
-      };
-      fileReader.onerror = (e) => reject(e);
-    });
-  }
-  const file = document.querySelector('#file');
-  file.addEventListener('change', async () => {
-    const content = file.files[0];
-    const blobData = await file2Blob(content);
-    console.log(blobData);
-  });
-</script>
+  </script>
