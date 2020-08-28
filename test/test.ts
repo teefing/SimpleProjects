@@ -51,7 +51,7 @@ class User implements IUser {
   getName1() {
     return this.name;
   }
-
+  
   @deprecate("已被废弃")
   getName() {
     return this.name;
@@ -60,7 +60,7 @@ class User implements IUser {
 
 const user = new User("Bob");
 user.getName();
-user.getName1();
-console.log(User.isTestable)
-user.name = 'alice'
-console.log(user.name);
+// user.getName1();
+// console.log(User.isTestable)
+// user.name = 'alice'
+// console.log(user.name);
