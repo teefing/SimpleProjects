@@ -1,8 +1,8 @@
-Function.prototype.myCall = function (context = window) {
-  context.fn = this;
-  const args = [...arguments].slice(1);
-  const res = context.fn(...args);
-  delete context.fn;
+Function.prototype.myCall = function (context = window, ...args) {
+  const unique = Symbol('fn');
+  context[unique] = this;
+  const res = context[unique](...args);
+  delete context[unique];
   return res;
 };
 

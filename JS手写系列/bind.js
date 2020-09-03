@@ -15,12 +15,14 @@
 
 // 无依赖版
 Function.prototype.myBind = function (context = window, ...bindArgs) {
-  context.fn = this
+  const uniq = Symbol('fn');
+  context[uniq] = this;
   return function (...args) {
-    context.fn(...bindArgs, ...args)
-    delete context.fn
-  }
-}
+    const res = context[uniq](...bindArgs, ...args);
+    delete context[uniq];
+    return res;
+  };
+};
 
 const obj = {
   value: 1,

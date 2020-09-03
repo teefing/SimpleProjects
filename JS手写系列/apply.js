@@ -1,7 +1,8 @@
 Function.prototype.myApply = function (context = window, args = []) {
-  context.fn = this;
-  const res = context.fn(...args)
-  delete context.fn;
+  const unique = Symbol('fn');
+  context[unique] = this;
+  const res = context[unique](...args);
+  delete context[unique];
   return res;
 };
 

@@ -34,9 +34,9 @@ function print(val) {
   console.log(this.value + val);
 }
 
-const printThrottled = throttle(print.bind(obj), 1000);
+const printThrottled = throttle(print, 1000);
 
 // 16毫秒执行一次printThrottled方法
 setInterval(() => {
-  printThrottled(1);
+  printThrottled.call(obj, 1);
 }, 16);

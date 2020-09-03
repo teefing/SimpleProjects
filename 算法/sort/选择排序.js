@@ -1,5 +1,5 @@
 const { swap } = require('./utils');
-
+// 每次都选出后面元素中最小的元素，与当前的元素交换，确保每次外层遍历后，前几个数都是最后的结果
 const selectSort = (arr) => {
   const len = arr.length;
   for (let i = 0; i < len; i++) {

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      input[type="checkbox"] {
+        display: none;
+      }
+
+      .checkbox {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #000;
+        padding: 2px;
+      }
+
+      input[type='checkbox']:checked + .checkbox {
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <label>
+      <input type="checkbox" id="checkbox" />
+      <div class="checkbox"></div>
+    </label>
+  </body>
+</html>
+<script>
+  checkbox.addEventListener('change', (e) => {
+    console.log(e.target.checked);
+  });
+</script>
