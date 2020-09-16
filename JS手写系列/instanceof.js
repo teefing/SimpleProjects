@@ -1,4 +1,4 @@
-function _instanceof(obj, clazz) {
+function instanceOf(obj, clazz) {
   let t = obj.__proto__;
   while (t) {
     if (t === clazz.prototype) return true;
@@ -7,4 +7,4 @@ function _instanceof(obj, clazz) {
   return false;
 }
 
-console.log(_instanceof(1, Number));
+console.log(instanceOf(1, Number));

@@ -207,11 +207,14 @@ function performUnitOfWork(fiber) {
   }
 }
 
+function shouldYield (deadline) {
+  // 根据requestIdleCallback返回的deadline参数来判断是否还有剩余时间，从而决定是否中断
+  return deadline.timeRemaining() < 1
+}
+
 function workLoop(deadline) {
-  let isBusy = false;
-  while (nextUnitOfWork && !isBusy) { // 如果有下一个任务单元并且不应该被中断
+  while (nextUnitOfWork && !shouldYield(deadline)) { // 如果有下一个任务单元并且不应该被中断
     nextUnitOfWork = performUnitOfWork(nextUnitOfWork); // 执行下一个任务单元并且得到新的任务单元
-    isBusy = deadline.timeRemaining() < 1; // 根据requestIdleCallback返回的deadline参数来判断是否还有剩余时间，从而决定是否中断
   }
 
   if (!nextUnitOfWork && wipRoot) {

@@ -1,0 +1,954 @@
+
+
+ SMP  ⏱  
+General output time took 0.569 secs
+
+ SMP  ⏱  Plugins
+HtmlWebpackPlugin took 0.037 secs
+MiniCssExtractPlugin took 0 secs
+
+ SMP  ⏱  Loaders
+mini-css-extract-plugin, and 
+css-loader, and 
+less-loader took 0.281 secs
+  module count = 1
+css-loader, and 
+less-loader took 0.234 secs
+  module count = 1
+babel-loader took 0.232 secs
+  module count = 2
+html-webpack-plugin took 0.019 secs
+  module count = 1
+
+
+
+{
+  "errors": [],
+  "warnings": [
+    "configuration\nThe 'mode' option has not been set, webpack will fallback to 'production' for this value. Set 'mode' option to 'development' or 'production' to enable defaults for each environment.\nYou can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/configuration/mode/"
+  ],
+  "version": "4.44.1",
+  "hash": "3c4f441cd89065b301a2",
+  "time": 571,
+  "builtAt": 1599549316603,
+  "publicPath": "",
+  "outputPath": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/dist",
+  "assetsByChunkName": {
+    "main": [
+      "main.css",
+      "bundle.js"
+    ]
+  },
+  "assets": [
+    {
+      "name": "bundle.js",
+      "size": 1001,
+      "chunks": [
+        0
+      ],
+      "chunkNames": [
+        "main"
+      ],
+      "info": {},
+      "emitted": true
+    },
+    {
+      "name": "index.html",
+      "size": 241,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {},
+      "emitted": true
+    },
+    {
+      "name": "main.css",
+      "size": 30,
+      "chunks": [
+        0
+      ],
+      "chunkNames": [
+        "main"
+      ],
+      "info": {},
+      "emitted": true
+    }
+  ],
+  "filteredAssets": 0,
+  "entrypoints": {
+    "main": {
+      "chunks": [
+        0
+      ],
+      "assets": [
+        "main.css",
+        "bundle.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "namedChunkGroups": {
+    "main": {
+      "chunks": [
+        0
+      ],
+      "assets": [
+        "main.css",
+        "bundle.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "chunks": [
+    {
+      "id": 0,
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "size": 125,
+      "names": [
+        "main"
+      ],
+      "files": [
+        "main.css",
+        "bundle.js"
+      ],
+      "hash": "d0cd64a2cd3a77f419d0",
+      "siblings": [],
+      "parents": [],
+      "children": [],
+      "childrenByOrder": {},
+      "modules": [
+        {
+          "id": 0,
+          "identifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/babel-loader/lib/index.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/index.js",
+          "name": "./src/index.js",
+          "index": 0,
+          "index2": 2,
+          "size": 57,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "issuer": null,
+          "issuerId": null,
+          "issuerName": null,
+          "issuerPath": null,
+          "profile": {
+            "factory": 23,
+            "building": 203
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": null,
+              "moduleIdentifier": null,
+              "module": null,
+              "moduleName": null,
+              "type": "single entry",
+              "userRequest": "./src/index.js",
+              "loc": "main"
+            }
+          ],
+          "usedExports": true,
+          "providedExports": [],
+          "optimizationBailout": [
+            "ModuleConcatenation bailout: Module is an entry point"
+          ],
+          "depth": 0,
+          "source": "import './style/global.less';\nconsole.log('hello world');"
+        },
+        {
+          "id": 1,
+          "identifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/mini-css-extract-plugin/dist/loader.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/css-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/less-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/style/global.less",
+          "name": "./src/style/global.less",
+          "index": 1,
+          "index2": 1,
+          "size": 39,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "issuer": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/babel-loader/lib/index.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/index.js",
+          "issuerId": 0,
+          "issuerName": "./src/index.js",
+          "issuerPath": [
+            {
+              "id": 0,
+              "identifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/babel-loader/lib/index.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/index.js",
+              "name": "./src/index.js",
+              "profile": {
+                "factory": 23,
+                "building": 203
+              }
+            }
+          ],
+          "profile": {
+            "factory": 7,
+            "building": 281
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": 0,
+              "moduleIdentifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/babel-loader/lib/index.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/index.js",
+              "module": "./src/index.js",
+              "moduleName": "./src/index.js",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./style/global.less",
+              "loc": "1:0-29"
+            }
+          ],
+          "usedExports": false,
+          "providedExports": null,
+          "optimizationBailout": [
+            "ModuleConcatenation bailout: Module is not an ECMAScript module"
+          ],
+          "depth": 1,
+          "source": "// extracted by mini-css-extract-plugin"
+        },
+        {
+          "id": "",
+          "identifier": "css /Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/css-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/less-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/style/global.less 0",
+          "name": "css ./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/style/global.less",
+          "index": 2,
+          "index2": 0,
+          "size": 29,
+          "built": false,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "issuer": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/mini-css-extract-plugin/dist/loader.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/css-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/less-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/style/global.less",
+          "issuerId": 1,
+          "issuerName": "./src/style/global.less",
+          "issuerPath": [
+            {
+              "id": 0,
+              "identifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/babel-loader/lib/index.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/index.js",
+              "name": "./src/index.js",
+              "profile": {
+                "factory": 23,
+                "building": 203
+              }
+            },
+            {
+              "id": 1,
+              "identifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/mini-css-extract-plugin/dist/loader.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/css-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/less-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/style/global.less",
+              "name": "./src/style/global.less",
+              "profile": {
+                "factory": 7,
+                "building": 281
+              }
+            }
+          ],
+          "profile": {
+            "factory": 0,
+            "building": 0
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": 1,
+              "moduleIdentifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/mini-css-extract-plugin/dist/loader.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/css-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/less-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/style/global.less",
+              "module": "./src/style/global.less",
+              "moduleName": "./src/style/global.less"
+            }
+          ],
+          "usedExports": true,
+          "providedExports": null,
+          "optimizationBailout": [
+            "ModuleConcatenation bailout: Module is not an ECMAScript module"
+          ],
+          "depth": 2
+        }
+      ],
+      "filteredModules": 0,
+      "origins": [
+        {
+          "module": "",
+          "moduleIdentifier": "",
+          "moduleName": "",
+          "loc": "main",
+          "request": "./src/index.js",
+          "reasons": []
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": 0,
+      "identifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/babel-loader/lib/index.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/index.js",
+      "name": "./src/index.js",
+      "index": 0,
+      "index2": 2,
+      "size": 57,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": null,
+      "issuerId": null,
+      "issuerName": null,
+      "issuerPath": null,
+      "profile": {
+        "factory": 23,
+        "building": 203
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": null,
+          "moduleIdentifier": null,
+          "module": null,
+          "moduleName": null,
+          "type": "single entry",
+          "userRequest": "./src/index.js",
+          "loc": "main"
+        }
+      ],
+      "usedExports": true,
+      "providedExports": [],
+      "optimizationBailout": [
+        "ModuleConcatenation bailout: Module is an entry point"
+      ],
+      "depth": 0,
+      "source": "import './style/global.less';\nconsole.log('hello world');"
+    },
+    {
+      "id": 1,
+      "identifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/mini-css-extract-plugin/dist/loader.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/css-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/less-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/style/global.less",
+      "name": "./src/style/global.less",
+      "index": 1,
+      "index2": 1,
+      "size": 39,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/babel-loader/lib/index.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/index.js",
+      "issuerId": 0,
+      "issuerName": "./src/index.js",
+      "issuerPath": [
+        {
+          "id": 0,
+          "identifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/babel-loader/lib/index.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/index.js",
+          "name": "./src/index.js",
+          "profile": {
+            "factory": 23,
+            "building": 203
+          }
+        }
+      ],
+      "profile": {
+        "factory": 7,
+        "building": 281
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": 0,
+          "moduleIdentifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/babel-loader/lib/index.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/index.js",
+          "module": "./src/index.js",
+          "moduleName": "./src/index.js",
+          "type": "harmony side effect evaluation",
+          "userRequest": "./style/global.less",
+          "loc": "1:0-29"
+        }
+      ],
+      "usedExports": false,
+      "providedExports": null,
+      "optimizationBailout": [
+        "ModuleConcatenation bailout: Module is not an ECMAScript module"
+      ],
+      "depth": 1,
+      "source": "// extracted by mini-css-extract-plugin"
+    },
+    {
+      "id": "",
+      "identifier": "css /Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/css-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/less-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/style/global.less 0",
+      "name": "css ./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/style/global.less",
+      "index": 2,
+      "index2": 0,
+      "size": 29,
+      "built": false,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/mini-css-extract-plugin/dist/loader.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/css-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/less-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/style/global.less",
+      "issuerId": 1,
+      "issuerName": "./src/style/global.less",
+      "issuerPath": [
+        {
+          "id": 0,
+          "identifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/babel-loader/lib/index.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/index.js",
+          "name": "./src/index.js",
+          "profile": {
+            "factory": 23,
+            "building": 203
+          }
+        },
+        {
+          "id": 1,
+          "identifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/mini-css-extract-plugin/dist/loader.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/css-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/less-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/style/global.less",
+          "name": "./src/style/global.less",
+          "profile": {
+            "factory": 7,
+            "building": 281
+          }
+        }
+      ],
+      "profile": {
+        "factory": 0,
+        "building": 0
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": 1,
+          "moduleIdentifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/mini-css-extract-plugin/dist/loader.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/css-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/less-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/style/global.less",
+          "module": "./src/style/global.less",
+          "moduleName": "./src/style/global.less"
+        }
+      ],
+      "usedExports": true,
+      "providedExports": null,
+      "optimizationBailout": [
+        "ModuleConcatenation bailout: Module is not an ECMAScript module"
+      ],
+      "depth": 2
+    }
+  ],
+  "filteredModules": 0,
+  "logging": {
+    "webpack.buildChunkGraph.visitModules": {
+      "entries": [],
+      "filteredEntries": 2,
+      "debug": false
+    }
+  },
+  "children": [
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "",
+      "outputPath": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/dist",
+      "assetsByChunkName": {
+        "HtmlWebpackPlugin_0": "__child-HtmlWebpackPlugin_0"
+      },
+      "assets": [
+        {
+          "name": "__child-HtmlWebpackPlugin_0",
+          "size": 4131,
+          "chunks": [
+            0
+          ],
+          "chunkNames": [
+            "HtmlWebpackPlugin_0"
+          ],
+          "info": {},
+          "emitted": false
+        }
+      ],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "HtmlWebpackPlugin_0": {
+          "chunks": [
+            0
+          ],
+          "assets": [
+            "__child-HtmlWebpackPlugin_0"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "HtmlWebpackPlugin_0": {
+          "chunks": [
+            0
+          ],
+          "assets": [
+            "__child-HtmlWebpackPlugin_0"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "chunks": [
+        {
+          "id": 0,
+          "rendered": true,
+          "initial": true,
+          "entry": true,
+          "size": 454,
+          "names": [
+            "HtmlWebpackPlugin_0"
+          ],
+          "files": [
+            "__child-HtmlWebpackPlugin_0"
+          ],
+          "hash": "9c9871e6c43c968d9cbf",
+          "siblings": [],
+          "parents": [],
+          "children": [],
+          "childrenByOrder": {},
+          "modules": [
+            {
+              "id": 0,
+              "identifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/html-webpack-plugin/lib/loader.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/html-webpack-plugin/default_index.ejs",
+              "name": "./node_modules/html-webpack-plugin/lib/loader.js!./node_modules/html-webpack-plugin/default_index.ejs",
+              "index": 0,
+              "index2": 0,
+              "size": 454,
+              "cacheable": true,
+              "built": true,
+              "optional": false,
+              "prefetched": false,
+              "chunks": [
+                0
+              ],
+              "issuer": null,
+              "issuerId": null,
+              "issuerName": null,
+              "issuerPath": null,
+              "profile": {
+                "factory": 64,
+                "building": 19
+              },
+              "failed": false,
+              "errors": 0,
+              "warnings": 0,
+              "assets": [],
+              "reasons": [
+                {
+                  "moduleId": null,
+                  "moduleIdentifier": null,
+                  "module": null,
+                  "moduleName": null,
+                  "type": "single entry",
+                  "userRequest": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/html-webpack-plugin/lib/loader.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/html-webpack-plugin/default_index.ejs",
+                  "loc": "HtmlWebpackPlugin_0"
+                }
+              ],
+              "usedExports": true,
+              "providedExports": null,
+              "optimizationBailout": [
+                "ModuleConcatenation bailout: Module is not an ECMAScript module"
+              ],
+              "depth": 0,
+              "source": "var _ = __non_webpack_require__(\"/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/lodash/lodash.js\");module.exports = function (templateParams) { with(templateParams) {return (function(data) {\nvar __t, __p = '';\n__p += '<!DOCTYPE html>\\n<html>\\n  <head>\\n    <meta charset=\"utf-8\">\\n    <title>' +\n((__t = ( htmlWebpackPlugin.options.title )) == null ? '' : __t) +\n'</title>\\n  </head>\\n  <body>\\n  </body>\\n</html>';\nreturn __p\n})();}}"
+            }
+          ],
+          "filteredModules": 0,
+          "origins": [
+            {
+              "module": "",
+              "moduleIdentifier": "",
+              "moduleName": "",
+              "loc": "HtmlWebpackPlugin_0",
+              "request": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/html-webpack-plugin/lib/loader.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/html-webpack-plugin/default_index.ejs",
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "modules": [
+        {
+          "id": 0,
+          "identifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/html-webpack-plugin/lib/loader.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/html-webpack-plugin/default_index.ejs",
+          "name": "./node_modules/html-webpack-plugin/lib/loader.js!./node_modules/html-webpack-plugin/default_index.ejs",
+          "index": 0,
+          "index2": 0,
+          "size": 454,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "issuer": null,
+          "issuerId": null,
+          "issuerName": null,
+          "issuerPath": null,
+          "profile": {
+            "factory": 64,
+            "building": 19
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": null,
+              "moduleIdentifier": null,
+              "module": null,
+              "moduleName": null,
+              "type": "single entry",
+              "userRequest": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/html-webpack-plugin/lib/loader.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/html-webpack-plugin/default_index.ejs",
+              "loc": "HtmlWebpackPlugin_0"
+            }
+          ],
+          "usedExports": true,
+          "providedExports": null,
+          "optimizationBailout": [
+            "ModuleConcatenation bailout: Module is not an ECMAScript module"
+          ],
+          "depth": 0,
+          "source": "var _ = __non_webpack_require__(\"/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/lodash/lodash.js\");module.exports = function (templateParams) { with(templateParams) {return (function(data) {\nvar __t, __p = '';\n__p += '<!DOCTYPE html>\\n<html>\\n  <head>\\n    <meta charset=\"utf-8\">\\n    <title>' +\n((__t = ( htmlWebpackPlugin.options.title )) == null ? '' : __t) +\n'</title>\\n  </head>\\n  <body>\\n  </body>\\n</html>';\nreturn __p\n})();}}"
+        }
+      ],
+      "filteredModules": 0,
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": [],
+      "name": "HtmlWebpackCompiler"
+    },
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "",
+      "outputPath": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/dist",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            0
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            0
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "chunks": [
+        {
+          "id": 0,
+          "rendered": true,
+          "initial": true,
+          "entry": true,
+          "size": 2831,
+          "names": [
+            "mini-css-extract-plugin"
+          ],
+          "files": [
+            "*"
+          ],
+          "hash": "dfc19fe6739d838f2762",
+          "siblings": [],
+          "parents": [],
+          "children": [],
+          "childrenByOrder": {},
+          "modules": [
+            {
+              "id": 0,
+              "identifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/babel-loader/lib/index.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/css-loader/dist/runtime/api.js",
+              "name": "./node_modules/css-loader/dist/runtime/api.js",
+              "index": 1,
+              "index2": 0,
+              "size": 2517,
+              "cacheable": true,
+              "built": true,
+              "optional": false,
+              "prefetched": false,
+              "chunks": [
+                0
+              ],
+              "issuer": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/css-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/less-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/style/global.less",
+              "issuerId": 1,
+              "issuerName": "./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/style/global.less",
+              "issuerPath": [
+                {
+                  "id": 1,
+                  "identifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/css-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/less-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/style/global.less",
+                  "name": "./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/style/global.less",
+                  "profile": {
+                    "factory": 4,
+                    "building": 234
+                  }
+                }
+              ],
+              "profile": {
+                "factory": 1,
+                "building": 30
+              },
+              "failed": false,
+              "errors": 0,
+              "warnings": 0,
+              "assets": [],
+              "reasons": [
+                {
+                  "moduleId": 1,
+                  "moduleIdentifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/css-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/less-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/style/global.less",
+                  "module": "./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/style/global.less",
+                  "moduleName": "./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/style/global.less",
+                  "type": "harmony side effect evaluation",
+                  "userRequest": "../../node_modules/css-loader/dist/runtime/api.js",
+                  "loc": "2:0-92"
+                },
+                {
+                  "moduleId": 1,
+                  "moduleIdentifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/css-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/less-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/style/global.less",
+                  "module": "./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/style/global.less",
+                  "moduleName": "./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/style/global.less",
+                  "type": "harmony import specifier",
+                  "userRequest": "../../node_modules/css-loader/dist/runtime/api.js",
+                  "loc": "3:30-57"
+                }
+              ],
+              "usedExports": [
+                "default"
+              ],
+              "providedExports": null,
+              "optimizationBailout": [
+                "ModuleConcatenation bailout: Module is not an ECMAScript module"
+              ],
+              "depth": 1,
+              "source": "\"use strict\";\n/*\n  MIT License http://www.opensource.org/licenses/mit-license.php\n  Author Tobias Koppers @sokra\n*/\n// css base code, injected by the css-loader\n// eslint-disable-next-line func-names\n\nmodule.exports = function (useSourceMap) {\n  var list = []; // return the list of modules as css string\n\n  list.toString = function toString() {\n    return this.map(function (item) {\n      var content = cssWithMappingToString(item, useSourceMap);\n\n      if (item[2]) {\n        return \"@media \".concat(item[2], \" {\").concat(content, \"}\");\n      }\n\n      return content;\n    }).join('');\n  }; // import a list of modules into the list\n  // eslint-disable-next-line func-names\n\n\n  list.i = function (modules, mediaQuery, dedupe) {\n    if (typeof modules === 'string') {\n      // eslint-disable-next-line no-param-reassign\n      modules = [[null, modules, '']];\n    }\n\n    var alreadyImportedModules = {};\n\n    if (dedupe) {\n      for (var i = 0; i < this.length; i++) {\n        // eslint-disable-next-line prefer-destructuring\n        var id = this[i][0];\n\n        if (id != null) {\n          alreadyImportedModules[id] = true;\n        }\n      }\n    }\n\n    for (var _i = 0; _i < modules.length; _i++) {\n      var item = [].concat(modules[_i]);\n\n      if (dedupe && alreadyImportedModules[item[0]]) {\n        // eslint-disable-next-line no-continue\n        continue;\n      }\n\n      if (mediaQuery) {\n        if (!item[2]) {\n          item[2] = mediaQuery;\n        } else {\n          item[2] = \"\".concat(mediaQuery, \" and \").concat(item[2]);\n        }\n      }\n\n      list.push(item);\n    }\n  };\n\n  return list;\n};\n\nfunction cssWithMappingToString(item, useSourceMap) {\n  var content = item[1] || ''; // eslint-disable-next-line prefer-destructuring\n\n  var cssMapping = item[3];\n\n  if (!cssMapping) {\n    return content;\n  }\n\n  if (useSourceMap && typeof btoa === 'function') {\n    var sourceMapping = toComment(cssMapping);\n    var sourceURLs = cssMapping.sources.map(function (source) {\n      return \"/*# sourceURL=\".concat(cssMapping.sourceRoot || '').concat(source, \" */\");\n    });\n    return [content].concat(sourceURLs).concat([sourceMapping]).join('\\n');\n  }\n\n  return [content].join('\\n');\n} // Adapted from convert-source-map (MIT)\n\n\nfunction toComment(sourceMap) {\n  // eslint-disable-next-line no-undef\n  var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));\n  var data = \"sourceMappingURL=data:application/json;charset=utf-8;base64,\".concat(base64);\n  return \"/*# \".concat(data, \" */\");\n}"
+            },
+            {
+              "id": 1,
+              "identifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/css-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/less-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/style/global.less",
+              "name": "./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/style/global.less",
+              "index": 0,
+              "index2": 1,
+              "size": 314,
+              "cacheable": true,
+              "built": true,
+              "optional": false,
+              "prefetched": false,
+              "chunks": [
+                0
+              ],
+              "issuer": null,
+              "issuerId": null,
+              "issuerName": null,
+              "issuerPath": null,
+              "profile": {
+                "factory": 4,
+                "building": 234
+              },
+              "failed": false,
+              "errors": 0,
+              "warnings": 0,
+              "assets": [],
+              "reasons": [
+                {
+                  "moduleId": null,
+                  "moduleIdentifier": null,
+                  "module": null,
+                  "moduleName": null,
+                  "type": "single entry",
+                  "userRequest": "!!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/css-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/less-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/style/global.less",
+                  "loc": "mini-css-extract-plugin"
+                }
+              ],
+              "usedExports": true,
+              "providedExports": [
+                "default"
+              ],
+              "optimizationBailout": [
+                "ModuleConcatenation bailout: Module uses module.id"
+              ],
+              "depth": 0,
+              "source": "// Imports\nimport ___CSS_LOADER_API_IMPORT___ from \"../../node_modules/css-loader/dist/runtime/api.js\";\nvar ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(false);\n// Module\n___CSS_LOADER_EXPORT___.push([module.id, \"body {\\n  background: pink;\\n}\\n\", \"\"]);\n// Exports\nexport default ___CSS_LOADER_EXPORT___;\n"
+            }
+          ],
+          "filteredModules": 0,
+          "origins": [
+            {
+              "module": "",
+              "moduleIdentifier": "",
+              "moduleName": "",
+              "loc": "mini-css-extract-plugin",
+              "request": "!!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/css-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/less-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/style/global.less",
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "modules": [
+        {
+          "id": 0,
+          "identifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/babel-loader/lib/index.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/css-loader/dist/runtime/api.js",
+          "name": "./node_modules/css-loader/dist/runtime/api.js",
+          "index": 1,
+          "index2": 0,
+          "size": 2517,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "issuer": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/css-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/less-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/style/global.less",
+          "issuerId": 1,
+          "issuerName": "./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/style/global.less",
+          "issuerPath": [
+            {
+              "id": 1,
+              "identifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/css-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/less-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/style/global.less",
+              "name": "./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/style/global.less",
+              "profile": {
+                "factory": 4,
+                "building": 234
+              }
+            }
+          ],
+          "profile": {
+            "factory": 1,
+            "building": 30
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": 1,
+              "moduleIdentifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/css-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/less-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/style/global.less",
+              "module": "./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/style/global.less",
+              "moduleName": "./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/style/global.less",
+              "type": "harmony side effect evaluation",
+              "userRequest": "../../node_modules/css-loader/dist/runtime/api.js",
+              "loc": "2:0-92"
+            },
+            {
+              "moduleId": 1,
+              "moduleIdentifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/css-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/less-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/style/global.less",
+              "module": "./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/style/global.less",
+              "moduleName": "./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/style/global.less",
+              "type": "harmony import specifier",
+              "userRequest": "../../node_modules/css-loader/dist/runtime/api.js",
+              "loc": "3:30-57"
+            }
+          ],
+          "usedExports": [
+            "default"
+          ],
+          "providedExports": null,
+          "optimizationBailout": [
+            "ModuleConcatenation bailout: Module is not an ECMAScript module"
+          ],
+          "depth": 1,
+          "source": "\"use strict\";\n/*\n  MIT License http://www.opensource.org/licenses/mit-license.php\n  Author Tobias Koppers @sokra\n*/\n// css base code, injected by the css-loader\n// eslint-disable-next-line func-names\n\nmodule.exports = function (useSourceMap) {\n  var list = []; // return the list of modules as css string\n\n  list.toString = function toString() {\n    return this.map(function (item) {\n      var content = cssWithMappingToString(item, useSourceMap);\n\n      if (item[2]) {\n        return \"@media \".concat(item[2], \" {\").concat(content, \"}\");\n      }\n\n      return content;\n    }).join('');\n  }; // import a list of modules into the list\n  // eslint-disable-next-line func-names\n\n\n  list.i = function (modules, mediaQuery, dedupe) {\n    if (typeof modules === 'string') {\n      // eslint-disable-next-line no-param-reassign\n      modules = [[null, modules, '']];\n    }\n\n    var alreadyImportedModules = {};\n\n    if (dedupe) {\n      for (var i = 0; i < this.length; i++) {\n        // eslint-disable-next-line prefer-destructuring\n        var id = this[i][0];\n\n        if (id != null) {\n          alreadyImportedModules[id] = true;\n        }\n      }\n    }\n\n    for (var _i = 0; _i < modules.length; _i++) {\n      var item = [].concat(modules[_i]);\n\n      if (dedupe && alreadyImportedModules[item[0]]) {\n        // eslint-disable-next-line no-continue\n        continue;\n      }\n\n      if (mediaQuery) {\n        if (!item[2]) {\n          item[2] = mediaQuery;\n        } else {\n          item[2] = \"\".concat(mediaQuery, \" and \").concat(item[2]);\n        }\n      }\n\n      list.push(item);\n    }\n  };\n\n  return list;\n};\n\nfunction cssWithMappingToString(item, useSourceMap) {\n  var content = item[1] || ''; // eslint-disable-next-line prefer-destructuring\n\n  var cssMapping = item[3];\n\n  if (!cssMapping) {\n    return content;\n  }\n\n  if (useSourceMap && typeof btoa === 'function') {\n    var sourceMapping = toComment(cssMapping);\n    var sourceURLs = cssMapping.sources.map(function (source) {\n      return \"/*# sourceURL=\".concat(cssMapping.sourceRoot || '').concat(source, \" */\");\n    });\n    return [content].concat(sourceURLs).concat([sourceMapping]).join('\\n');\n  }\n\n  return [content].join('\\n');\n} // Adapted from convert-source-map (MIT)\n\n\nfunction toComment(sourceMap) {\n  // eslint-disable-next-line no-undef\n  var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));\n  var data = \"sourceMappingURL=data:application/json;charset=utf-8;base64,\".concat(base64);\n  return \"/*# \".concat(data, \" */\");\n}"
+        },
+        {
+          "id": 1,
+          "identifier": "/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/css-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/less-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/style/global.less",
+          "name": "./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/style/global.less",
+          "index": 0,
+          "index2": 1,
+          "size": 314,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "issuer": null,
+          "issuerId": null,
+          "issuerName": null,
+          "issuerPath": null,
+          "profile": {
+            "factory": 4,
+            "building": 234
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": null,
+              "moduleIdentifier": null,
+              "module": null,
+              "moduleName": null,
+              "type": "single entry",
+              "userRequest": "!!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/css-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/node_modules/less-loader/dist/cjs.js!/Users/tengfei/code/learn/simple_projects/WebpackDemo/src/style/global.less",
+              "loc": "mini-css-extract-plugin"
+            }
+          ],
+          "usedExports": true,
+          "providedExports": [
+            "default"
+          ],
+          "optimizationBailout": [
+            "ModuleConcatenation bailout: Module uses module.id"
+          ],
+          "depth": 0,
+          "source": "// Imports\nimport ___CSS_LOADER_API_IMPORT___ from \"../../node_modules/css-loader/dist/runtime/api.js\";\nvar ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(false);\n// Module\n___CSS_LOADER_EXPORT___.push([module.id, \"body {\\n  background: pink;\\n}\\n\", \"\"]);\n// Exports\nexport default ___CSS_LOADER_EXPORT___;\n"
+        }
+      ],
+      "filteredModules": 0,
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": [],
+      "name": "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js!node_modules/less-loader/dist/cjs.js!src/style/global.less"
+    }
+  ]
+}

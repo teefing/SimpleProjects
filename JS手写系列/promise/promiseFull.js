@@ -148,15 +148,35 @@ class MyPromise {
   };
 }
 
-new MyPromise((resolve, reject) => {
-  resolve(999);
+// new MyPromise((resolve, reject) => {
+//   resolve(999);
+// })
+//   .then((val) => {
+//     console.log(1);
+//     console.log(val);
+//     return 89;
+//   })
+//   .then((val) => {
+//     console.log(2);
+//     console.log(val);
+//   });
+new Promise((resolve, reject) => {
+  console.log('log: 外部promise');
+  resolve();
 })
-  .then((val) => {
-    console.log(1);
-    console.log(val);
-    return 89;
+  .then(() => {
+    console.log('log: 外部第一个then');
+    new Promise((resolve, reject) => {
+      console.log('log: 内部promise');
+      resolve();
+    })
+      .then(() => {
+        console.log('log: 内部第一个then');
+      })
+      .then(() => {
+        console.log('log: 内部第二个then');
+      });
   })
-  .then((val) => {
-    console.log(2);
-    console.log(val);
+  .then(() => {
+    console.log('log: 外部第二个then');
   });

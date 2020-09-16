@@ -19,6 +19,8 @@
     "@babel/core": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
     "babel": "^6.23.0",
-    "babel-preset-env": "^1.7.0"
+    "babel-preset-env": "^1.7.0",
+    "benchmark": "^2.1.4",
+    "taobao-mini-sdk": "^0.2.1"
   }
 }
