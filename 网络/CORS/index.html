@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="handleBtnClick()">click</button>
+</body>
+</html>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    handleBtnClick();
+  });
+  async function handleBtnClick() {
+    const data = {
+      name: 'hello',
+    };
+    let result = await fetch('http://localhost:3000', {
+      body: JSON.stringify(data),
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      // mode: 'cors',
+    });
+    result = await result.json();
+    alert(result.name);
+  }
+</script>

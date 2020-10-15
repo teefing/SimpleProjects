@@ -4,9 +4,12 @@ function add(...args) {
     arr = [...arr, ...rest];
     return fn;
   }
-  fn.toString = fn.valueOf = function () {
+  fn[Symbol.toPrimitive] = function () {
     return arr.reduce((acc, cur) => acc + parseInt(cur));
   };
+  // fn.toString = fn.valueOf = function () {
+  //   return arr.reduce((acc, cur) => acc + parseInt(cur));
+  // };
 
   return fn;
 }

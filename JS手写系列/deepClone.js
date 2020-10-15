@@ -47,3 +47,7 @@ const obj1 = {
 obj1.obj = obj1;
 
 console.log(deepClone(obj1).func(2, 3));
+
+
+deepClone(JSON.parse('{"__proto__": {"admin": 1}}'));
+console.log(({}).admin);
