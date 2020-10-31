@@ -1,0 +1,113 @@
+{
+  "code": "000000",
+  "data": [
+    {
+      "taskType": "beMember",
+      "times": 1,
+      "todayCompleteTimes": 0,
+      "grass": 3,
+      "waitReceiveGrass": 0,
+      "value": "//market.m.taobao.com/apps/market/shopmember/index.html?wh_weex=true&sellerId=2207623078795&extraInfo=%7B%22source%22%3A%22isvapp%22%2C%22entrance%22%3A%22duiba%22%7D",
+      "limitType": 2,
+      "taskId": "beMember1"
+    },
+    {
+      "taskType": "focusShop",
+      "times": 1,
+      "todayCompleteTimes": 1,
+      "grass": 3,
+      "waitReceiveGrass": 0,
+      "value": "",
+      "limitType": 2,
+      "taskId": "focusShop1"
+    },
+    {
+      "taskType": "accessLive",
+      "times": 1,
+      "todayCompleteTimes": 0,
+      "grass": 3,
+      "waitReceiveGrass": 0,
+      "value": "https://h5.m.taobao.com/taolive/video.html?userId=3962528240&id=",
+      "limitType": 1,
+      "taskId": "accessLive1"
+    },
+    {
+      "taskType": "invites",
+      "times": 2,
+      "todayCompleteTimes": 0,
+      "grass": 3,
+      "waitReceiveGrass": 0,
+      "value": "",
+      "limitType": 1,
+      "taskId": "invites"
+    },
+    {
+      "taskType": "link",
+      "times": 1,
+      "todayCompleteTimes": 0,
+      "grass": 12,
+      "waitReceiveGrass": 0,
+      "value": "http://tmall.com",
+      "limitType": 1,
+      "desc": "跳转"
+    },
+    {
+      "taskType": "order",
+      "times": 3,
+      "todayCompleteTimes": 0,
+      "grass": "",
+      "waitReceiveGrass": 0,
+      "value": "",
+      "limitType": 1,
+      "taskId": "order",
+      "desc": "下单任务"
+    },
+    {
+      "taskType": "freeReceive",
+      "times": 3,
+      "freeReceiveLastTime": 1603693566734,
+      "todayCompleteTimes": 3,
+      "grass": 3,
+      "waitReceiveGrass": 0,
+      "value": "",
+      "limitType": 1,
+      "taskId": "freeReceive",
+      "desc": "免费领取牧草"
+    },
+    {
+      "taskType": "feedReceive",
+      "times": 1,
+      "todayCompleteTimes": 0,
+      "grass": 3,
+      "waitReceiveGrass": 0,
+      "value": "",
+      "limitType": 1,
+      "taskId": "feedReceive",
+      "desc": "喂养奶牛奖励牧草"
+    },
+    {
+      "taskType": "browserGoods",
+      "times": 3,
+      "todayCompleteTimes": 0,
+      "grass": 3,
+      "waitReceiveGrass": 0,
+      "value": "",
+      "limitType": 1,
+      "taskId": "browserGoods",
+      "desc": "浏览商品"
+    },
+    {
+      "taskType": "orderSpec",
+      "times": 1,
+      "todayCompleteTimes": 0,
+      "grass": "7",
+      "waitReceiveGrass": 0,
+      "value": "616903228711",
+      "limitType": 1,
+      "taskId": "orderSpec",
+      "desc": "指定商品下单任务"
+    }
+  ],
+  "success": true,
+  "message": "成功"
+}

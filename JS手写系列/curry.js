@@ -11,4 +11,4 @@ const curried = curry(add);
 console.log(curried(1, 2)(3));
 console.log(curried(1)(2, 3));
 console.log(curried(1)(2)(3));
-console.log(curried(1,2,3,4));
+console.log(curried(1, 2, 3, 4));

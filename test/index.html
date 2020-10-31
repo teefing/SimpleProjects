@@ -4,31 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    body {
+  background: beige;
+  overflow: scroll;
+}
+
+section {
+  width: 400px;
+  height: 480px;
+  margin: 30px;
+  padding: 15px;
+  background: lightgray;
+}
+
+p {
+  position: fixed;
+  width: 50%;   /* == (50vw - (width of vertical scrollbar)) */
+  height: 50%;  /* == (50vh - (height of horizontal scrollbar)) */
+  margin: 5%;   /* == (5vw - (width of vertical scrollbar)) */
+  padding: 5%;  /* == (5vw - (width of vertical scrollbar)) */
+  background: cyan;
+}
+  </style>
 </head>
-<style>
-  
-  .wrapper {
-    display: flex;
-    width: 400px;
-  }
-
-  .wrapper div {
-    flex: 1;
-    border: 1px solid #000;
-  }
-
-  @media (max-width: 500px) {
-    .wrapper {
-      display: block;
-    }
-  }
-</style>
 <body>
-  <div class="wrapper">
-    <div>column 1column 1column 1column 1</div>
-    <div>column 2column 2column 2column 2column 2column 2column 2column 2</div>
-    <div>column 3column 3column 3column 3column 3column 3column 3column 3column 3column 3column 3column 3column 3</div>
-    <div>column 4</div>
-  </div>
+  <section>
+    <p>This is a paragraph!</p>
+  </section>
 </body>
 </html>

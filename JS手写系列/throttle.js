@@ -1,5 +1,5 @@
 function throttle(fn, timeout = 200) {
-  let lastTime = Date.now();
+  let lastTime = 0;
   let cur;
   return function cb(...args) {
     cur = Date.now();
@@ -34,7 +34,7 @@ function print(val) {
   console.log(this.value + val);
 }
 
-const printThrottled = throttle(print, 1000);
+const printThrottled = throttle(print, 5000);
 
 // 16毫秒执行一次printThrottled方法
 setInterval(() => {

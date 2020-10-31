@@ -4,17 +4,18 @@ function JSONP(url) {
   return new Promise((resolve, reject) => {
     const script = document.createElement('script');
     const callbackName = `jsonp_callback_${Date.now()}`;
-    window[callbackName] = function (res) {
-      resolve(res);
-      script.remove();
-      delete window[callbackName];
-    };
 
     const param = new URL(url).searchParams;
     param.append('callback', callbackName);
 
     script.src = `${BASE_SERVER_ADDRESS}?${param.toString()}`;
     document.body.append(script);
+
+    window[callbackName] = function (res) {
+      resolve(res);
+      script.remove();
+      delete window[callbackName];
+    };
 
     script.onerror = function (e) {
       reject(e);

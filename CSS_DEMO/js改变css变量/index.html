@@ -15,8 +15,9 @@
         height: 50px;
         background: red;
         position: absolute;
-        left: var(--mouse-x);
-        top: var(--mouse-y);
+        left: 0;
+        top: 0;
+        transform: translate3d(var(--mouse-x), var(--mouse-y), 0);
       }
 
       .mover1 {
@@ -24,8 +25,9 @@
         height: 50px;
         background: red;
         position: absolute;
-        left: calc(var(--mouse-x) + 100px);
-        top: calc(var(--mouse-y) + 100px);
+        left: 0;
+        top: 0;
+        transform: translate3d(calc(var(--mouse-x) + 100px), calc(var(--mouse-y) + 100px), 0);
       }
     </style>
   </head>
@@ -38,7 +40,8 @@
   const root = document.documentElement;
 
   root.addEventListener('mousemove', (e) => {
-    root.style.setProperty('--mouse-x', `${e.clientX}px`);
+    // root.style.setProperty('--mouse-x', `${e.clientX}px`);
+    root.style['--mouse-x'] = `${e.clientX}px`;
     root.style.setProperty('--mouse-y', `${e.clientY}px`);
   });
 </script>

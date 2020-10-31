@@ -67,4 +67,5 @@ const p = new Bromise((resolve, reject) => {
     resolve(1);
   }, 2000);
 })
+  .then((res) => Bromise.resolve(2))
   .then((res) => console.log(res));

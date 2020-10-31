@@ -1,8 +1,8 @@
 function NEW(className, ...args) {
-  const res = {};
-  res.__proto__ = className.prototype;
-  className.call(res, ...args);
-  return res;
+  const obj = {};
+  obj.__proto__ = className.prototype;
+  const res = className.call(obj, ...args);
+  return (typeof res === 'object' && res !== null) ? res : obj;
 }
 
 function classA(age) {

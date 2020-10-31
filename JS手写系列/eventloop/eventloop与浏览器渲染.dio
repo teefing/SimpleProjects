@@ -1,6 +1,6 @@
-<mxfile host="f1cd924e-bfa8-4b4c-bde1-8299b6b16e45" modified="2020-07-11T09:59:53.122Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.0 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36" etag="GrnPzCbt9R2JxoWJ27cD" version="13.1.3">
+<mxfile host="65bd71144e" modified="2020-10-18T06:42:25.031Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.49.2 Chrome/83.0.4103.122 Electron/9.2.1 Safari/537.36" etag="KNPR-BLyjZVBw5WY0uOr" version="13.6.5">
     <diagram id="6hGFLwfOUW9BJ-s0fimq" name="Page-1">
-        <mxGraphModel dx="852" dy="493" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="648" dy="507" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -50,13 +50,13 @@
                     <mxGeometry x="250" y="500" width="120" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="43" value="" style="group" parent="1" vertex="1" connectable="0">
-                    <mxGeometry x="180" y="620" width="260" height="140" as="geometry"/>
+                    <mxGeometry x="180" y="620" width="260" height="210" as="geometry"/>
                 </mxCell>
                 <mxCell id="35" value="&lt;span&gt;&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;" parent="43" vertex="1">
-                    <mxGeometry width="260" height="140" as="geometry"/>
+                    <mxGeometry width="260" height="210" as="geometry"/>
                 </mxCell>
                 <mxCell id="38" value="&lt;ol&gt;&lt;li&gt;页面大小发生变化，执行resize回调&lt;/li&gt;&lt;li&gt;页面发生滚动，执行scroll回调&lt;/li&gt;&lt;li&gt;如果触发media query，执行对应逻辑&lt;/li&gt;&lt;li&gt;更新动画并发送你事件&lt;/li&gt;&lt;li&gt;判断是否有全屏操作事件&lt;/li&gt;&lt;li&gt;执行raf&lt;/li&gt;&lt;li&gt;执行IntersectionObserver回调&lt;/li&gt;&lt;li&gt;重新渲染&lt;/li&gt;&lt;/ol&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;align=left;" parent="43" vertex="1">
-                    <mxGeometry x="5" width="250" height="140" as="geometry"/>
+                    <mxGeometry x="5" width="250" height="210" as="geometry"/>
                 </mxCell>
                 <mxCell id="46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="44" target="47" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -64,13 +64,13 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="44" value="&lt;span&gt;如果宏任务和微任务都空，执行requestIdleCallback&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
-                    <mxGeometry x="160" y="810" width="300" height="50" as="geometry"/>
+                    <mxGeometry x="160" y="880" width="300" height="50" as="geometry"/>
                 </mxCell>
                 <mxCell id="45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="38" target="44" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="47" value="&lt;span&gt;End&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="250" y="930" width="120" height="50" as="geometry"/>
+                    <mxGeometry x="250" y="980" width="120" height="50" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
