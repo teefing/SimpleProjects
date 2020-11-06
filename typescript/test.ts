@@ -1,7 +1,5 @@
-class Dark {
-  constructor(name, private age, protected sex, public gener) {
-    
+function isBig(n: number) {
+  if (n > 100) {
+    return true
   }
 }
-
-let a = new Dark(1,1,1,1)

@@ -4,7 +4,7 @@ function transform(data, depth) {
   const keys = Object.keys(data);
   keys.forEach((key) => {
     const originKey = key;
-    key += 'transformed';
+    key = key.replace(/\B([A-Z])/g, '_$1').toLowerCase();
     data[key] = data[originKey];
     delete data[originKey];
     transform(data[key], depth - 1);
@@ -13,7 +13,7 @@ function transform(data, depth) {
 
 
 const obj = {
-  Abc: 'abc',
+  AbcAddd: 'abc',
   Inner: {
     Aaa: 'aaa',
     Bbb: 'bbb',
