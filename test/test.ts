@@ -1,9 +1,5 @@
-type func1 = (a: number | string) => void
-type func2 = (a: string) => void
+const tuple = <T extends string[]>(...args: T) => args;
 
-let func1: func2 = (a) => {
-  a.toLocaleString
-}
-let func2: func2 = a => {
-  a.length
-}
+const ButtonTypes = tuple('default', 'primary', 'ghost', 'dashed', 'link', 'text');
+
+type ButtonType = typeof ButtonTypes[number]

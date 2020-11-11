@@ -1,36 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    body {
-  background: beige;
-  overflow: scroll;
-}
-
-section {
-  width: 400px;
-  height: 480px;
-  margin: 30px;
-  padding: 15px;
-  background: lightgray;
-}
-
-p {
-  position: fixed;
-  width: 50%;   /* == (50vw - (width of vertical scrollbar)) */
-  height: 50%;  /* == (50vh - (height of horizontal scrollbar)) */
-  margin: 5%;   /* == (5vw - (width of vertical scrollbar)) */
-  padding: 5%;  /* == (5vw - (width of vertical scrollbar)) */
-  background: cyan;
-}
-  </style>
-</head>
-<body>
-  <section>
-    <p>This is a paragraph!</p>
-  </section>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
 </html>
+<script>
+  function Component() {
+    this.name = "component";
+  }
+  Component.prototype.isReactComponent = {}
+
+  function PureComponent() {
+    Component.call(this, ...arguments)
+    this.name = "pure component";
+  }
+
+  PureComponent.prototype = Object.create(Component.prototype, {
+    constructor: {
+      value: PureComponent,
+      enumerable: false,
+      writeable: true,
+      configurable: true
+    },
+    isPureComponent: {
+      value: true
+    }
+  })
+  Object.assign(PureComponent.prototype, Component.prototype)
+  console.log(new PureComponent());
+</script>
