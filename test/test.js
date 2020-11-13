@@ -1,19 +1,11 @@
-let x = new Proxy({}, {
-  get (target, key, receiver) {
-    console.log('key: ', key);
-    if (key === 'then') {
-      throw new Error('error')
-    } else {
-      return target[key]
-    }
-  }
+
+new Promise((resolve, reject) => {
+  reject(new Error('promise error'))
+}).then((val) => {
+  console.log('val: ', val);
+}, (reason) => {
+  console.log('reason: ', reason);
+  return new Error('reason')
+}).then(val => {
+  console.log(val);
 })
-
-console.log(x !== null && (typeof x === "object" || typeof x === "function"));
-
-try {
-  console.log(x.then);
-} catch (e) {
-  console.log(222);
-  console.log(e);
-}

@@ -93,68 +93,54 @@ function resolvePromise (promise, x, resolve, reject) {
 }
 
 MyPromise.prototype.then = function(onFulfilled, onRejected) {
-  var realOnFulfilled = onFulfilled;
-  if (typeof onFulfilled !== "function") {
-    realOnFulfilled = function(value) {
-      return value;
-    };
-  }
-  var realOnRejected = onRejected;
-  if (typeof onRejected !== "function") {
-    realOnRejected = function(err) {
-      throw err;
-    };
-  }
+  
+  var promise2
+  var that = this
 
-  var that = this;
-  var promise2;
-
-  function onFulfilledCallback(resolve, reject) {
+  function onFulfilledCallback (resolve, reject) {
     setTimeout(() => {
       try {
-        if (typeof onFulfilled == "function") {
-          var x = realOnFulfilled(that.value);
-          resolvePromise(promise2, x, resolve, reject);
+        if (typeof onFulfilled === 'function') {
+          var x = onFulfilled(that.value)
+          resolvePromise(promise2, x, resolve, reject)
         } else {
-          resolve(that.value);
+          resolve(that.value)
         }
-      } catch (e) {
-        reject(e);
+      } catch (error) {
+        reject(error)
       }
     }, 0);
   }
 
-  function onRejectedCallback(resolve, reject) {
+  function onRejectedCallback (resolve, reject) {
     setTimeout(() => {
       try {
-        if (typeof onRejected == "function") {
-          var x = realOnRejected(that.reason);
-          resolvePromise(promise2, x, resolve, reject);
+        if (typeof onRejected === 'function') {
+          var x = onRejected(that.reason)
+          resolvePromise(promise2, x, resolve, reject)
         } else {
-          reject(that.reason);
+          reject(that.reason)
         }
-      } catch (e) {
-        reject(e);
+      } catch (error) {
+        reject(error)
       }
+      
     }, 0);
   }
+
   if (this.status === PENDING) {
-    promise2 = new MyPromise(function(resolve, reject) {
-      that.onFulfilledCallbacks.push(onFulfilledCallback.bind(that, resolve, reject));
-      that.onRejectedCallbacks.push(onRejectedCallback.bind(that, resolve, reject));
-    });
-  }
-
-  if (this.status === FULFILLED) {
-    promise2 = new MyPromise(function(resolve, reject) {
-      onFulfilledCallback(resolve, reject);
-    });
-  }
-
-  if (this.status === REJECTED) {
-    promise2 = new MyPromise(function(resolve, reject) {
-      onRejectedCallback(resolve, reject);
-    });
+    promise2 = new Promise(function (resolve, reject) {
+      that.onFulfilledCallbacks.push(onFulfilledCallback.bind(that, resolve, reject))
+      that.onRejectedCallbacks.push(onRejectedCallback.bind(that, reject, resolve))
+    })
+  } else if (this.status === FULFILLED) {
+    promise2 = new Promise(function (resolve, reject) {
+      onFulfilledCallback(that, resolve, reject)
+    })
+  } else if(this.status === REJECTED) {
+    promise2 = new Promise(function (resolve, reject) {
+      onRejectedCallback(that, resolve, reject)
+    })
   }
 
   return promise2;
