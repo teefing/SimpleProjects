@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "promises-aplus-tests MyPromise"
+    "test-out": "promises-aplus-tests MyPromise",
+    "test": "promises-aplus-tests ./JS/promise/MyPromiseCopy"
   },
   "keywords": [],
   "author": "tengfei",

@@ -20,7 +20,7 @@ function MyPromise(fn) {
       that.status = FULFILLED;
       that.value = value;
 
-      // resolve里面将所有成功的回调拿出来执行
+      // 当 promise 成功执行时，所有 onFulfilled 需按照其注册顺序依次回调
       that.onFulfilledCallbacks.forEach((callback) => {
         callback(that.value);
       });
@@ -33,7 +33,7 @@ function MyPromise(fn) {
       that.status = REJECTED;
       that.reason = reason;
 
-      // resolve里面将所有失败的回调拿出来执行
+      // 当 promise 被拒绝执行时，所有的 onRejected 需按照其注册顺序依次回调
       that.onRejectedCallbacks.forEach((callback) => {
         callback(that.reason);
       });
@@ -47,6 +47,13 @@ function MyPromise(fn) {
   }
 }
 
+/**
+ * 
+ * @param {*} promise 当前的promise
+ * @param {*} x onFulfilled/onRejected执行返回的值
+ * @param {*} resolve 当前promise的resolve
+ * @param {*} reject 当前promise的reject
+ */
 function resolvePromise(promise, x, resolve, reject) {
   // 如果 promise 和 x 指向同一对象，以 TypeError 为据因拒绝执行 promise
   // 这是为了防止死循环
@@ -66,9 +73,11 @@ function resolvePromise(promise, x, resolve, reject) {
   }
   // 如果 x 为对象或者函数
   else if (x !== null && (typeof x === "object" || typeof x === "function")) {
+    var then
     try {
       // 把 x.then 赋值给 then
-      var then = x.then;
+      // !!! 这里按照正常思维可以不用try catch包裹，但是如果x被代理，访问then时throw一个错误，那么用try catch包裹就是有必要的
+      then = x.then;
     } catch (error) {
       // 如果取 x.then 的值时抛出错误 e ，则以 e 为据因拒绝 promise
       return reject(error);
@@ -121,7 +130,7 @@ MyPromise.prototype.then = function(onFulfilled, onRejected) {
   // 如果onFulfilled不是函数，给一个默认函数，返回value
   // 后面返回新promise的时候也做了onFulfilled的参数检查，这里可以删除，暂时保留是为了跟规范一一对应，看得更直观
   var realOnFulfilled = onFulfilled;
-  if (typeof realOnFulfilled !== "function") {
+  if (typeof onFulfilled !== "function") {
     realOnFulfilled = function(value) {
       return value;
     };
@@ -130,11 +139,13 @@ MyPromise.prototype.then = function(onFulfilled, onRejected) {
   // 如果onRejected不是函数，给一个默认函数，返回reason的Error
   // 后面返回新promise的时候也做了onRejected的参数检查，这里可以删除，暂时保留是为了跟规范一一对应，看得更直观
   var realOnRejected = onRejected;
-  if (typeof realOnRejected !== "function") {
-    realOnRejected = function(reason) {
-      throw reason;
+  if (typeof onRejected !== "function") {
+    realOnRejected = function(err) {
+      throw err;
     };
   }
+
+  // 如果 onFulfilled 或者 onRejected 返回一个值 x ，则运行下面的 Promise 解决过程：[[Resolve]](promise2, x)
 
   var that = this; // 保存一下this
   var promise2;
@@ -143,6 +154,7 @@ MyPromise.prototype.then = function(onFulfilled, onRejected) {
     promise2 = new MyPromise(function(resolve, reject) {
       setTimeout(function() {
         try {
+          // 如果 onFulfilled 不是函数且 promise1 成功执行， promise2 必须成功执行并返回相同的值
           if (typeof onFulfilled !== "function") {
             resolve(that.value);
           } else {
@@ -150,6 +162,7 @@ MyPromise.prototype.then = function(onFulfilled, onRejected) {
             resolvePromise(promise2, x, resolve, reject);
           }
         } catch (error) {
+          // 如果 onFulfilled 或者 onRejected 抛出一个异常 e ，则 promise2 必须拒绝执行，并返回拒因 e
           reject(error);
         }
       }, 0);
@@ -179,6 +192,7 @@ MyPromise.prototype.then = function(onFulfilled, onRejected) {
       that.onFulfilledCallbacks.push(function() {
         setTimeout(function() {
           try {
+            // 如果 onRejected 不是函数且 promise1 拒绝执行， promise2 必须拒绝执行并返回相同的据因
             if (typeof onFulfilled !== "function") {
               resolve(that.value);
             } else {
@@ -276,7 +290,7 @@ MyPromise.race = function(promiseList) {
 };
 
 MyPromise.prototype.catch = function(onRejected) {
-  this.then(null, onRejected);
+  return this.then(null, onRejected);
 };
 
 MyPromise.prototype.finally = function(fn) {
@@ -336,3 +350,14 @@ MyPromise.allSettled = function(promiseList) {
 };
 
 module.exports = MyPromise;
+
+new MyPromise((resolve, reject) => {
+  resolve('val')
+  resolve('val1')
+}).then((val) => {
+  return new Error('error')
+}).then(val => {
+  console.log(val);
+}).catch(e => {
+  console.log(e);
+})

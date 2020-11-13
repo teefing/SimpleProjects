@@ -1,26 +1,19 @@
-const promise1 = new Promise((resolve) => {
-  resolve('promise1')
+let x = new Proxy({}, {
+  get (target, key, receiver) {
+    console.log('key: ', key);
+    if (key === 'then') {
+      throw new Error('error')
+    } else {
+      return target[key]
+    }
+  }
 })
 
-const promise2 = new Promise((resolve, reject) => {
-  reject(new Error('error2'))
-})
+console.log(x !== null && (typeof x === "object" || typeof x === "function"));
 
-const promise3 = new Promise((resolve, reject) => {
-  setTimeout(() => {
-  reject(new Error('error3'))
-    
-  }, 2000);
-})
-
-const res = Promise.all([promise3, promise1, promise2]).then(res => {
-  console.log(res);
-}).catch(e => {
+try {
+  console.log(x.then);
+} catch (e) {
+  console.log(222);
   console.log(e);
-}).finally(() => {
-  console.log(promise1);
-  console.log(promise2);
-})
-
-
-
+}
