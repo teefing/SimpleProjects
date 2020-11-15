@@ -1,11 +1,17 @@
+function Add (...rest) {
+  const args = [...rest]
+  function AddInner (...rest1) {
+    args.push(...rest1)
+    return AddInner
+  }
 
-new Promise((resolve, reject) => {
-  reject(new Error('promise error'))
-}).then((val) => {
-  console.log('val: ', val);
-}, (reason) => {
-  console.log('reason: ', reason);
-  return new Error('reason')
-}).then(val => {
-  console.log(val);
-})
+  AddInner.sumOf = function () {
+    return args.reduce((acc, cur) => acc+cur, 0)
+  }
+
+  return AddInner
+}
+
+console.log(Add(1)(2)(3).sumOf());
+console.log(Add(1, 2)(3)(4).sumOf());
+console.log(Add(1, 2, 5)(3)(4).sumOf());

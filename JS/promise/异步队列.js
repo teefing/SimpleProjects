@@ -50,10 +50,10 @@ const addTask = (time, order) => {
   scheduler.add(() => timeout(time)).then(() => console.log(order));
 };
 
-addTask(10000, '1');
-addTask(5000, '2');
-addTask(3000, '3');
-addTask(4000, '4');
+addTask(1000, '1');
+addTask(500, '2');
+addTask(300, '3');
+addTask(400, '4');
 // output: 2 3 1 4
 
 // 一开始，1、2两个任务进入队列
