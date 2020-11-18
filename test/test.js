@@ -1,17 +1,3 @@
-function Add (...rest) {
-  const args = [...rest]
-  function AddInner (...rest1) {
-    args.push(...rest1)
-    return AddInner
-  }
-
-  AddInner.sumOf = function () {
-    return args.reduce((acc, cur) => acc+cur, 0)
-  }
-
-  return AddInner
-}
-
-console.log(Add(1)(2)(3).sumOf());
-console.log(Add(1, 2)(3)(4).sumOf());
-console.log(Add(1, 2, 5)(3)(4).sumOf());
+let str = 'https://www.abchina.com/abcpay%7c15742221896203989558%261111%26new*http%3a%2f%2factivity.m.duibatest.com.cn%2fchw%2fabc%2ftranfer%3forderId%3d1161154323650220528'
+let res = str.match(/^.*abcpay%7c(\d*)%26\d*%26new\*(http.*)$/)
+console.log(res);

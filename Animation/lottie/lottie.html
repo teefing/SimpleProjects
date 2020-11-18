@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container" style="width: 200px; height: 200px;"></div>
+    <button onclick="animation.play()">play</button>
+    <button onclick="animation.pause()">pause</button>
+  </body>
+</html>
+<script>
+  function loadJs(path) {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = path;
+      script.type = 'text/javascript'
+      script.onload = () => {
+        resolve(lottie)
+      }
+      document.body.appendChild(script);
+    });
+  }
+
+  var animation
+  loadJs('https://cdn.bootcdn.net/ajax/libs/lottie-web/5.7.3/lottie.min.js').then((lottie) => {
+      animation = lottie.loadAnimation({
+      container: document.getElementById("container"), // Required
+      path: "./infinity-worms.json", // Required
+      renderer: "canvas", // Required
+      loop: true, // Optional
+      autoplay: true, // Optional
+      name: "Hello World", // Name for future reference. Optional.
+    });
+    animation.play();
+  });
+</script>
