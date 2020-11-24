@@ -1,50 +1,32 @@
-const fs = require("fs");
+let prizes = [
+  {
+    id: 1,
+  },
+  {
+    id: 2,
+  },
+  {
+    id: 3
+  }
+];
+function Random(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+function getRandoms() {
+  var a = Random(0, prizes.length - 1);
+  var b = Random(0, prizes.length - 1);
+  var c = Random(0, prizes.length - 1);
+  var prizeA = prizes[a].id;
+  var prizeB = prizes[b].id;
+  var prizeC = prizes[c].id;
+  if (prizeA === prizeB || prizeA === prizeC || prizeB === prizeC) {
+    return getRandoms();
+  } else {
+    return [prizes[a].id, prizes[b].id, prizes[c].id];
+  }
+}
 
-const promisify = (fn) => {
-  return (...args) => {
-    return new Promise((resolve, reject) => {
-      args.push((err, data) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(data);
-        }
-      });
-      fn.apply(null, args);
-    });
-  };
-};
-
-const callbackify = (promiseCreator) => {
-  return (...args) => {
-    const arg = args.slice(0, -1)
-    const cb = args.slice(-1)[0];
-    promiseCreator(...arg)
-      .then((val) => {
-        cb(null, val);
-      })
-      .catch((err) => {
-        cb(err, null);
-      });
-  };
-};
-
-// fs.exists("./config.js", (err, val) => {
-//   console.log("val: ", val);
-//   console.log("err: ", err);
-// });
-
-const existPromise = promisify(fs.exists);
-// existPromise("./config.js")
-//   .then((val) => {
-//     console.log("val: ", val);
-//   })
-//   .catch((err) => {
-//     console.log("err: ", err);
-//   });
-
-const existFn = callbackify(existPromise)
-existFn("./config.js", (err, val) => {
-  console.log("val: ", val);
-  console.log("err: ", err);
-});
+let start = Date.now()
+console.log(getRandoms());
+let end = Date.now()
+console.log(`${(end-start)/1000}s`);
