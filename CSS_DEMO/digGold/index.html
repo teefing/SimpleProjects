@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        width: 800px;
+        height: 800px;
+        position: relative;
+      }
+      .hook {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 10px;
+        height: 200px;
+        background-color: gold;
+        transform-origin: 50% 0;
+        animation: swag 1s ease-in-out infinite alternate both;
+      }
+
+      @keyframes swag {
+        from {
+          transform: rotate(-60deg);
+        }
+        to {
+          transform: rotate(60deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button onclick="pause()">pause</button>
+    <button onclick="goon()">continue</button>
+    <button onclick="stretch()">stretch</button>
+    <div class="container">
+      <div class="hook"></div>
+    </div>
+  </body>
+</html>
+<script>
+  function pause() {
+    let hookDom = document.querySelector(".hook");
+    hookDom.style.animationPlayState = "paused";
+  }
+  function goon() {
+    let hookDom = document.querySelector(".hook");
+    hookDom.style.animationPlayState = "running";
+  }
+  function stretch(){
+    let hookDom = document.querySelector(".hook");
+  }
+</script>
