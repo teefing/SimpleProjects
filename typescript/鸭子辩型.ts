@@ -1,17 +1,17 @@
 type DuckA = {
-  name: string
-}
+  name: string;
+};
 
 type DuckB = {
-  name: string
-}
+  name: string;
+};
 
-function test(a: DuckA) {
+function testDuck(a: DuckA) {
   console.log(a);
 }
 
-let duckA: DuckA = {name: '1'}
-let duckB: DuckB = {name: '2'}
+let duckA: DuckA = { name: "1" };
+let duckB: DuckB = { name: "2" };
 
-test(duckA)
-test(duckB)
+testDuck(duckA);
+testDuck(duckB);
