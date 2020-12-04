@@ -1,21 +1,27 @@
-const merge = (leftArr, rightArr) => {
+const { defaultSortFunc } = require("./utils");
+
+const merge = (leftArr, rightArr, compareFn) => {
   let res = [];
   while (leftArr.length && rightArr.length) {
-    if (leftArr[0] < rightArr[0]) {
-      res.push(leftArr.shift());
-    } else {
+    if (compareFn(leftArr[0], rightArr[0]) > 0) {
       res.push(rightArr.shift());
+    } else {
+      res.push(leftArr.shift());
     }
   }
-
-  res = res.concat(leftArr, rightArr);
-  return res;
+  return res.concat(leftArr, rightArr);
 };
 
-const mergeSort = (arr) => {
-  if (arr.length <= 1) return arr;
-  const mid = Math.floor(arr.length - 1);
-  return merge(mergeSort(arr.slice(0, mid)), mergeSort(arr.slice(mid)));
-};
+// 分治思想，递归将排序好的子序列归并
+const MergeSort = (arr, compareFn = defaultSortFunc) => {
+  let len = arr.length;
+  if (len <= 1) return arr;
+  const mid = Math.floor(arr.length / 2);
 
-console.log(mergeSort([3, 1, 6, 4, 7, 9, 0]));
+  return merge(
+    MergeSort(arr.slice(0, mid), compareFn),
+    MergeSort(arr.slice(mid), compareFn),
+    compareFn
+  );
+};
+module.exports = MergeSort;
