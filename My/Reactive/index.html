@@ -12,10 +12,12 @@
           this.$data = this.options.data;
           this.el = document.querySelector(this.options.el);
           this.compile(this.el);
+          // 调用双向绑定
           this.observe(this.$data);
         }
         observe(data) {
           let _this = this;
+          // 代理data的set操作，当数据赋值时触发页面数据更新
           this.$data = new Proxy(data, {
             set(target, key, value, receiver) {
               let event = new CustomEvent(key, {
@@ -28,31 +30,43 @@
         }
 
         compile(el) {
+          // 取出子节点
           let child = el.childNodes;
+          // 遍历子节点
           [...child].forEach((node) => {
+            // 如果是文本节点
             if (node.nodeType === TYPE_TEXT_NODE) {
               let text = node.textContent;
               let reg = /{{\s*([^\s{}]+)\s*}}/;
+              // 如果文本内容符合 {{xxx}} 的形式
               if (reg.test(text)) {
                 let $1 = RegExp.$1;
+                // 如果data中有xxx，则用data中的数据替换xxx
                 this.$data[$1] &&
                   (node.textContent = text.replace(reg, this.$data[$1]));
 
+                // 监听xxx，如果xxx发生更改，修改dom的内容
                 this.addEventListener($1, (e) => {
                   node.textContent = text.replace(reg, e.detail);
                 });
               }
             } else if (node.nodeType === 1) {
+              // 如果是普通元素节点
               let attr = node.attributes;
-              console.log("attr: ", attr);
+
+              // 如果属性中存在v-model
               if (attr.hasOwnProperty("v-model")) {
+                // 得到v-model属性节点的值
                 let keyName = attr["v-model"].nodeValue;
+                // 将元素节点的值修改
                 node.value = this.$data[keyName];
+                // 监听元素节点的input事件，input后修改data中的数据
                 node.addEventListener("input", (e) => {
                   this.$data[keyName] = node.value;
                 });
               }
             }
+            // 递归对子节点处理
             this.compile(node);
           });
         }

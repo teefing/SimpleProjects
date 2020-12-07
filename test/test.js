@@ -1,1 +1,2 @@
-console.log(BubbleSort([3, 2, 5, 1, 2]));
+let pattern = /{{\s*([^\s{}]+)\s*}}/;
+console.log(pattern.test("{{{} aaa }}"));
