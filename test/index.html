@@ -2,78 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
     <script>
-      const TYPE_TEXT_NODE = 3;
-      class Reactive extends EventTarget {
-        constructor(options) {
-          super();
-          this.options = options;
-          this.$data = this.options.data;
-          this.el = document.querySelector(this.options.el);
-          this.compile(this.el);
-          this.observe(this.$data);
-        }
-        observe(data) {
-          let _this = this;
-          this.$data = new Proxy(data, {
-            set(target, key, value, receiver) {
-              let event = new CustomEvent(key, {
-                detail: value,
-              });
-              _this.dispatchEvent(event);
-              return Reflect.set(target, key, value, receiver);
-            },
-          });
-        }
-
-        compile(el) {
-          let child = el.childNodes;
-          [...child].forEach((node) => {
-            if (node.nodeType === TYPE_TEXT_NODE) {
-              let text = node.textContent;
-              let reg = /{{\s*([^\s{}]+)\s*}}/;
-              if (reg.test(text)) {
-                let $1 = RegExp.$1;
-                this.$data[$1] &&
-                  (node.textContent = text.replace(reg, this.$data[$1]));
-
-                this.addEventListener($1, (e) => {
-                  node.textContent = text.replace(reg, e.detail);
-                });
-              }
-            } else if (node.nodeType === 1) {
-              let attr = node.attributes;
-              console.log("attr: ", attr);
-              if (attr.hasOwnProperty("v-model")) {
-                let keyName = attr["v-model"].nodeValue;
-                node.value = this.$data[keyName];
-                node.addEventListener("input", (e) => {
-                  this.$data[keyName] = node.value;
-                });
-              }
-            }
-            this.compile(node);
-          });
-        }
-      }
+      window.redirectUrl = "https://sxzy.yunzhi.co/pointmall/jump.html";
+      window.location.replace(window.redirectUrl);
     </script>
   </head>
-  <body>
-    <div id="app">
-      {{name}}
-      <h2>{{age}}</h2>
-      <input type="text" v-model="name" />
-    </div>
-    <script>
-      let vm = new Reactive({
-        // 挂载元素
-        el: "#app",
-        data: {
-          name: "枫",
-          age: 23,
-        },
-      });
-    </script>
-  </body>
+  <body></body>
 </html>
