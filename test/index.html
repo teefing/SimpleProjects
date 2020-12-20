@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body></body>
+<body>
+  <div id="app">
+    {{name}}
+    <h2>{{age}}</h2>
+    <input type="text" v-model="name" />
+  </div>
+</body>
 </html>
 <script>
   let pattern = /\/projectx\/[^\/]*\/([^\/]*).html/g;
