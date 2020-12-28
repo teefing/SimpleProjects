@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .track-btn {
+      display: block;
+      overflow: hidden;
+      position: relative;
+      border-radius: 25px;
+      width: 400px;
+      height: 50px;
+      background-color: #66f;
+      cursor: pointer;
+      line-height: 50px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      color: #fff;
+    }
+    span {
+      position: relative;
+      pointer-events: none;
+    }
+    .track-btn::before {
+      --size: 0;
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+      width: var(--size);
+      height: var(--size);
+      background-image: radial-gradient(circle closest-side, #09f, transparent);
+      content: "";
+      transform: translate3d(-50%, -50%, 0);
+      transition: width 200ms ease, height 200ms ease;
+    }
+    .track-btn:hover::before {
+      --size: 400px;
+    }
+  </style>
+  <body>
+    <a class="track-btn">
+      <span>妙用CSS变量，让你的CSS变得更心动</span>
+    </a>
+  </body>
+</html>
+<script>
+  document.querySelector(".track-btn").addEventListener("mousemove", (e) => {
+    const x = e.pageX - e.target.offsetLeft;
+    const y = e.pageY - e.target.offsetTop;
+    e.target.style.setProperty("--x", `${x}px`);
+    e.target.style.setProperty("--y", `${y}px`);
+  });
+</script>

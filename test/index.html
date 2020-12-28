@@ -4,22 +4,53 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      .main {
+        /* width: 600px; */
+        height: 200px;
+        border: 1px solid #000;
+        overflow: hidden;
+      }
+      .left {
+        float: left;
+        width: 100px;
+        height: 100%;
+        background-color: yellowgreen;
+        margin-left: -100%;
+      }
+      .right {
+        float: left;
+        width: 100px;
+        height: 100%;
+        background-color: yellow;
+        margin-right: -100px;
+        position: relative;
+        left: -100px;
+      }
+      .center {
+        width: 100%;
+        float: left;
+        height: 100%;
+      }
+      .inner {
+        height: 100%;
+        margin-left: 100px;
+        margin-right: 100px;
+        background-color: pink;
+      }
+    </style>
   </head>
-<body>
-  <div id="app">
-    {{name}}
-    <h2>{{age}}</h2>
-    <input type="text" v-model="name" />
-  </div>
-</body>
+  <body>
+    <div class="main">
+      <div  class="center">
+        <div class="inner"></div>
+      </div>
+      <div class="left"></div>
+      
+      <div class="right"></div>
+      
+      
+      
+    </div>
+  </body>
 </html>
-<script>
-  let pattern = /\/projectx\/[^\/]*\/([^\/]*).html/g;
-  let link =
-    "activity.m.duibadev.com.cn/projectx/p6756a85d/f0a020f29.html?appKey=jlg88lyxz7siqtmr&openBs=openbs";
-  console.log(
-    link.replace(pattern, (match, p1) => {
-      return match.replace(p1, "index");
-    })
-  );
-</script>
