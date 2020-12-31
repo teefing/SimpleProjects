@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RxJs</title>
+  </head>
+  <body></body>
+</html>
+<script src="https://cdn.bootcdn.net/ajax/libs/rxjs/6.6.3/rxjs.umd.min.js"></script>
+<script>
+  const Rx = rxjs;
+  const Op = Rx.operators;
+
+  console.log("Rx: ", Object.keys(Rx));
+  console.log("Op: ", Object.keys(Op));
+
+  const { fromEvent, timer } = Rx;
+  const { takeUntil } = Op;
+</script>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="end"></div>
+    <div id="text"></div>
+    <button id="clickMe">clickMe</button>
+  </body>
+</html>
+<script src="https://cdn.bootcdn.net/ajax/libs/rxjs/6.6.3/rxjs.umd.min.js"></script>
+<script>
+  const Rx = rxjs;
+  const Op = Rx.operators;
+
+  console.log("Rx: ", Object.keys(Rx));
+  console.log("Op: ", Object.keys(Op));
+
+  const { fromEvent, timer } = Rx;
+  const { takeUntil } = Op;
+  let clickCount = 0;
+  const event$ = fromEvent(document.querySelector("#clickMe"), "click");
+  const countDown$ = timer(5000);
+  const filtered$ = event$.pipe(takeUntil(countDown$));
+
+  const showEnd = () => {
+    document.querySelector("#end").innerText = "时间结束";
+  };
+  const updateCount = () => {
+    document.querySelector("#text").innerText = ++clickCount;
+  };
+
+  countDown$.subscribe(showEnd);
+  filtered$.subscribe(updateCount);
+</script>
