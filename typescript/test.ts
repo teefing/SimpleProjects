@@ -1,5 +1,2 @@
-function isBig(n: number) {
-  if (n > 100) {
-    return true
-  }
-}
+import E from "./export";
+console.log(E);

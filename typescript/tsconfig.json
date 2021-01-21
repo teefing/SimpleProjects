@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
+    "watch": false,
     "strict": true,
-    "noImplicitReturns": true
+    "noImplicitReturns": true,
+    "esModuleInterop": true,
+    "allowJs": true
   }
 }
