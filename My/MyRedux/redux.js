@@ -1,5 +1,9 @@
-export function createStore(reducer) {
-  let currentState = undefined;
+function createStore(reducer, preloadedState, enhancer) {
+  if (enhancer) {
+    return enhancer(createStore)(reducer, preloadedState);
+  }
+
+  let currentState = preloadedState;
   let currentReducer = reducer;
   let listeners = [];
 
@@ -35,7 +39,7 @@ export function createStore(reducer) {
   };
 }
 
-export function combineReducers(reducers) {
+function combineReducers(reducers) {
   return function (state = {}, action) {
     let combinedState = {};
     Object.keys(reducers).forEach((key) => {
@@ -46,7 +50,7 @@ export function combineReducers(reducers) {
 }
 
 // 个人认为叫bindDispatch更合适一点
-export function bindActionCreators(actionCreators, dispatch) {
+function bindActionCreators(actionCreators, dispatch) {
   let boundActionCreators = {};
   Object.keys(actionCreators).forEach((key) => {
     boundActionCreators[key] = (...args) => {
@@ -54,6 +58,24 @@ export function bindActionCreators(actionCreators, dispatch) {
     };
   });
   return boundActionCreators;
+}
+
+function compose(...funcs) {
+  return funcs.reduce((a, b) => (...args) => a(b(...args)));
+}
+
+function applyMiddleware(...middlewares) {
+  return function (createStore) {
+    return function (reducer, preloadedState) {
+      let store = createStore(reducer, preloadedState);
+      const chain = middlewares.map((middleware) => middleware(store));
+      let dispatch = compose(...chain)(store.dispatch);
+      return {
+        ...store,
+        dispatch,
+      };
+    };
+  };
 }
 
 if (require.main === module) {
@@ -126,5 +148,20 @@ if (require.main === module) {
   console.log(store.getState());
   store.dispatch({ type: "reducer2" });
   console.log(store.getState());
+  console.groupEnd();
+
+  console.group("applyMiddlewares");
+  const logger = (store) => (dispatch) => (action) => {
+    console.log("before", store.getState());
+    dispatch(action);
+    console.log("after", store.getState());
+  };
+  let storeWithLogger = createStore(
+    reducer,
+    defaultState,
+    applyMiddleware(logger)
+  );
+  storeWithLogger.dispatch({ type: "ADD" });
+
   console.groupEnd();
 }
