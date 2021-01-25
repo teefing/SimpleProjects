@@ -1,130 +1,131 @@
-export function createStore(reducer) {
-  let currentState = undefined;
-  let currentReducer = reducer;
-  let listeners = [];
+const DRAFT_STATE = Symbol("immer-draft-state");
 
-  function getState() {
-    return currentState;
-  }
+const isDraft = (value) => !!value && !!value[DRAFT_STATE];
+const isDraftable = (value) => value !== null && typeof value === "object";
+const has = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop);
+const shallowCopy = (value) =>
+  Array.isArray(value) ? [...value] : { ...value };
 
-  function dispatch(action) {
-    currentState = currentReducer(currentState, action);
-    listeners.forEach((fn) => fn());
-  }
-
-  function subscribe(listener) {
-    listeners.push(listener);
-    return function () {
-      listeners = listeners.filter((fn) => fn !== listener);
-    };
-  }
-
-  function replaceReducer(nextReducer) {
-    reducer = nextReducer;
-    // 强行调用一次reducer获取外部的默认state
-    dispatch({ type: "@@redux/REPLACE" });
-  }
-
-  // 强行调用一次reducer获取外部的默认state
-  dispatch({ type: "@@redux/INIT" });
-  return {
-    getState,
-    dispatch,
-    subscribe,
-    replaceReducer,
+function createDraft(parent, base, proxies) {
+  const state = {
+    finalized: false,
+    parent,
+    base,
+    copy: undefined,
+    drafts: {},
   };
-}
-
-export function combineReducers(reducers) {
-  return function (state = {}, action) {
-    let combinedState = {};
-    Object.keys(reducers).forEach((key) => {
-      combinedState[key] = reducers[key](state[key], action);
-    });
-    return combinedState;
-  };
-}
-
-// 个人认为叫bindDispatch更合适一点
-export function bindActionCreators(actionCreators, dispatch) {
-  let boundActionCreators = {};
-  Object.keys(actionCreators).forEach((key) => {
-    boundActionCreators[key] = (...args) => {
-      dispatch(actionCreators[key](...args));
-    };
-  });
-  return boundActionCreators;
-}
-
-if (require.main === module) {
-  let defaultState = {
-    a: 1,
-  };
-  let reducer = (state = defaultState, action) => {
-    switch (action.type) {
-      case "ADD": {
-        const { a } = state;
-        return {
-          ...state,
-          a: a + 1,
-        };
+  const p = Proxy.revocable(state, {
+    get(state, prop) {
+      if (prop === DRAFT_STATE) return state;
+      if (state.copy) {
+        const value = state.copy[prop];
+        if (value === state.base[prop] && isDraftable(value)) {
+          return (state.copy[prop] = createDraft(state, value, proxies));
+        }
+        return value;
       }
-      default:
-        return state;
-    }
-  };
-  let store = createStore(reducer);
-
-  console.group("get initial state");
-  console.log(store.getState());
-  console.groupEnd();
-
-  console.group("get state after dispatch type ADD");
-  store.dispatch({ type: "ADD" });
-  console.log(store.getState());
-  console.groupEnd();
-
-  console.group("subscribe");
-  const unsubscribe = store.subscribe(() => {
-    console.log("listener1");
+      if (has(state.drafts, prop)) return state.drafts[prop];
+      const value = state.base[prop];
+      if (!isDraft(state) && isDraftable(value)) {
+        return (state.drafts[prop] = createDraft(state, value, proxies));
+      }
+      return value;
+    },
+    has(state, prop) {
+      return Reflect.has(state.copy || state.base, prop);
+    },
+    ownKeys(state) {
+      return Reflect.ownKeys(state.copy || state.base);
+    },
+    set(state, prop, value) {
+      if (!state.copy) {
+        if (
+          (has(state.base, prop) && state.base[prop] === value) ||
+          (has(state.drafts, prop) && state.drafts[prop] === value)
+        )
+          return true;
+        markChanged(state);
+      }
+      state.copy[prop] = value;
+      return true;
+    },
+    deleteProperty(state, prop) {
+      markChanged(state);
+      delete state.copy[prop];
+      return true;
+    },
+    getOwnPropertyDescriptor(state, prop) {
+      const owner =
+        state.copy || has(state.drafts, prop) ? state.drafts : state.base;
+      return Reflect.getOwnPropertyDescriptor(owner, prop);
+    },
   });
-  store.dispatch({ type: "ADD" });
-  console.groupEnd();
-
-  console.group("unsubscribe");
-  unsubscribe();
-  store.dispatch({ type: "ADD" });
-  console.groupEnd();
-
-  console.group("test combineReducers");
-  let defaultState1 = {
-    a: 1,
-  };
-  let reducer1 = (state = defaultState1, action) => {
-    if (action.type === "reducer1") {
-      return { ...state, a: state.a + 1 };
-    }
-    return state;
-  };
-  let defaultState2 = {
-    b: 1,
-  };
-  let reducer2 = (state = defaultState2, action) => {
-    if (action.type === "reducer2") {
-      return { ...state, b: state.b + 1 };
-    }
-    return state;
-  };
-
-  let combinedReducer = combineReducers({
-    reducer1,
-    reducer2,
-  });
-
-  store = createStore(combinedReducer);
-  store.dispatch({ type: "reducer1" });
-  console.log(store.getState());
-  store.dispatch({ type: "reducer2" });
-  console.log(store.getState());
-  console.groupEnd();
+  proxies.push(p);
+  return p.proxy;
 }
+
+function markChanged(state) {
+  if (!state.copy) {
+    state.copy = shallowCopy(state.base);
+    Object.assign(state.copy, state.drafts); // works on Array
+    if (state.parent) markChanged(state.parent);
+  }
+}
+
+function finalize(draft) {
+  if (isDraft(draft)) {
+    const state = draft[DRAFT_STATE];
+    const { copy, base } = state;
+    if (copy) {
+      if (state.finalized) return copy; // TEST: self reference
+      state.finalized = true;
+      Object.entries(copy).forEach(([prop, value]) => {
+        // works on Array
+        if (value !== base[prop]) copy[prop] = finalize(value);
+      });
+      return copy;
+    }
+    return base;
+  }
+  return draft;
+}
+
+function createImmer(base) {
+  const proxies = [];
+  const draft = createDraft(undefined, base, proxies);
+  const finish = () => {
+    const res = finalize(draft);
+    proxies.forEach((p) => p.revoke());
+    return res;
+  };
+  return { draft, finish };
+}
+
+function produce(base, producer) {
+  if (typeof base === "function" && producer !== "function") {
+    return function (s = producer, ...args) {
+      // TEST: produce as object method
+      return produce(s, (draft) => base.call(this, draft, ...args));
+    };
+  }
+  const { draft, finish } = createImmer(base);
+  const p = producer.call(draft, draft);
+  if (p instanceof Promise) return p.then(() => finish());
+  return finish();
+}
+
+const baseState = [
+  {
+    todo: "Learn typescript",
+    done: true,
+  },
+  {
+    todo: "Try immer",
+    done: false,
+  },
+];
+const nextState = produce(baseState, (draftState) => {
+  draftState.push({ todo: "Tweet about it", done: false });
+  draftState[1].done = true;
+});
+console.log(baseState, nextState);
