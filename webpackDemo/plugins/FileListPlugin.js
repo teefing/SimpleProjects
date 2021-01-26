@@ -1,7 +1,7 @@
 class FileListPlugin {
   constructor(options) {
     this.options = options;
-    this.name = 'FileListPlugin';
+    this.name = "FileListPlugin";
   }
 
   // apply(compiler) {
@@ -41,7 +41,7 @@ class FileListPlugin {
       compilation.hooks.buildModule.tap(this.name, (module) => {
         // 一个模块开始构建之前，可以用于修改模块信息
         // 模块代码内容的转换依旧是应该 loader 来处理，plugin 着眼于其他信息的调整或获取
-        console.log(module);
+        // console.log(module);
       });
 
       compilation.hooks.finishModules.tap(this.name, (modules) => {
@@ -65,7 +65,7 @@ class FileListPlugin {
       this.name,
       (compilation) =>
         // 在输出构建结果前执行，可以通过该 hook 返回 true/false 来控制是否输出对应的构建结果
-        true,
+        true
     );
 
     compiler.hooks.assetEmitted.tap(this.name, (file, content) => {

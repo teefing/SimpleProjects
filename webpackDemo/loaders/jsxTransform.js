@@ -42,7 +42,7 @@ function transformJsx2CreateElement(source) {
   });
 
   const result = core.transformFromAstSync(ast).code;
-  console.log(result);
+  // console.log(result);
   return result;
 }
 
