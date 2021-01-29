@@ -1,6 +1,18 @@
-console.log(__dirname);
-console.log(__filename);
+import React from "react";
 
-module.exports = function(a, b) {
-  return a + b;
-};
+const EMPTY = Symbol();
+
+export function createContainer(useHook) {
+  const Context = React.createContext(EMPTY);
+  function Provider(props) {
+    let value = useHook(props.initialState);
+    return <Context.Provider value={value}></Context.Provider>;
+  }
+
+  function useContainer() {
+    let value = React.useContext(Context);
+    return value;
+  }
+
+  return { Provider, useContainer };
+}
