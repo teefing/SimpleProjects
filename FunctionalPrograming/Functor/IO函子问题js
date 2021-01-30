@@ -1,0 +1,36 @@
+const fp = require('lodash/fp')
+const fs = require('fs')
+
+class IO {
+  constructor(fn) {
+    this.__value = fn
+  }
+
+  static of (value) {
+    return new IO(() => value)
+  }
+
+  map (fn) {
+    return new IO(fp.flowRight(fn, this.__value))
+  }
+}
+
+let readFile = function (filename) {
+  return new IO(function () {
+    return fs.readFileSync(filename, 'utf8')
+  })
+}
+
+let print = function (x) {
+  return new IO(function () {
+    console.log(x);
+    return x
+  })
+}
+
+// IO(IO(x))
+let cat = fp.flowRight(print, readFile)
+
+// 当函子嵌套函子时，获取value就不方便
+let r = cat('./package.json').__value().__value()
+console.log(r);
