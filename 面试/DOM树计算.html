@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <div>
+      <span>f</span>
+      <span>o</span>
+      <span>o</span>
+    </div>
+  </body>
+</html>
+
+<script>
+  function walk(root) {
+    let totalElementsCount = 0,
+      maxDOMTreeDepth = 0,
+      maxChildrenCount = 0;
+    let q = [root];
+    while (q.length) {
+      const len = q.length;
+      for (let i = 0; i < len; i++) {
+        const current = q.shift();
+        totalElementsCount++;
+        maxChildrenCount = Math.max(maxChildrenCount, current.children.length);
+
+        [...current.children].forEach((child) => {
+          q.push(child);
+        });
+      }
+      maxDOMTreeDepth++;
+    }
+
+    return {
+      totalElementsCount,
+      maxDOMTreeDepth,
+      maxChildrenCount,
+    };
+  }
+
+  console.log(walk(document.documentElement));
+</script>

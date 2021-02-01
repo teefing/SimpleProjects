@@ -1,12 +1,14 @@
 function throttle(fn, timeout = 200) {
   let lastTime = 0;
   let cur;
+  let result;
   return function cb(...args) {
     cur = Date.now();
     if (cur - lastTime >= timeout) {
-      fn.call(this, ...args);
+      result = fn.call(this, ...args);
       lastTime = cur;
     }
+    return result;
   };
 }
 

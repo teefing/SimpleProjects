@@ -49,7 +49,7 @@ function resolvePromise(promise, x, resolve, reject) {
   // 2.如果 x 为 Promise ，则使 promise 接受 x 的状态
   // 也就是继续执行x，如果执行的时候拿到一个y，还要继续解析y
   else if (x instanceof MyPromise) {
-    x.then(function(v) {
+    x.then(function (v) {
       resolvePromise(promise, v, resolve, reject);
     }, reject);
   }
@@ -73,13 +73,13 @@ function resolvePromise(promise, x, resolve, reject) {
         then.call(
           x,
           // 如果 resolvePromise 以值 y 为参数被调用，则运行 [[Resolve]](promise, y)
-          function(y) {
+          function (y) {
             if (called) return;
             called = true;
             resolvePromise(promise, y, resolve, reject);
           },
           // 如果 rejectPromise 以据因 r 为参数被调用，则以据因 r 拒绝 promise
-          function(r) {
+          function (r) {
             if (called) return;
             called = true;
             reject(r);
@@ -105,7 +105,7 @@ function resolvePromise(promise, x, resolve, reject) {
   }
 }
 
-MyPromise.prototype.then = function(onFulfilled, onRejected) {
+MyPromise.prototype.then = function (onFulfilled, onRejected) {
   let promise2;
   const onFulfilledCallback = (resolve, reject) => {
     setTimeout(() => {
@@ -169,9 +169,9 @@ MyPromise.prototype.then = function(onFulfilled, onRejected) {
   return promise2;
 };
 
-MyPromise.deferred = function() {
+MyPromise.deferred = function () {
   var result = {};
-  result.promise = new MyPromise(function(resolve, reject) {
+  result.promise = new MyPromise(function (resolve, reject) {
     result.resolve = resolve;
     result.reject = reject;
   });
@@ -179,7 +179,7 @@ MyPromise.deferred = function() {
   return result;
 };
 
-MyPromise.resolve = function(value) {
+MyPromise.resolve = function (value) {
   // !!! 注意如果Promise.resolve传入一个promise作为参数，返回的还是该promise，而Promise.reject如果接受一个promise，返回的是一个新的promise
   if (value instanceof MyPromise) {
     return value;
@@ -189,20 +189,20 @@ MyPromise.resolve = function(value) {
   });
 };
 
-MyPromise.reject = function(reason) {
+MyPromise.reject = function (reason) {
   return new MyPromise((resolve, reject) => {
     reject(reason);
   });
 };
 
-MyPromise.all = function(promiseList) {
+MyPromise.all = function (promiseList) {
   return new MyPromise((resolve, reject) => {
     // 完成的promise数量
     let count = 0;
     // all的结果
     let result = [];
     // promise列表总数
-    let length = promiseList;
+    let length = promiseList.length;
     // !!! 当promiseList长度为0时需要返回一个空数组
     if (length === 0) resolve(result);
 
@@ -216,7 +216,7 @@ MyPromise.all = function(promiseList) {
   });
 };
 
-MyPromise.race = function(promiseList) {
+MyPromise.race = function (promiseList) {
   return new MyPromise((resolve, reject) => {
     // promiseList长度为0时不用返回
     promiseList.forEach((promise) => {
@@ -225,14 +225,14 @@ MyPromise.race = function(promiseList) {
   });
 };
 
-MyPromise.allSettled = function(promiseList) {
+MyPromise.allSettled = function (promiseList) {
   return new MyPromise((resolve, reject) => {
     // 完成的promise数量
     let count = 0;
     // all的结果
     let result = [];
     // promise列表总数
-    let length = promiseList;
+    let length = promiseList.length;
     // !!! 当promiseList长度为0时需要返回一个空数组
     if (length === 0) resolve(result);
 
@@ -240,23 +240,22 @@ MyPromise.allSettled = function(promiseList) {
       MyPromise.resolve(promise).then(
         (value) => {
           count++;
-          result[index] = value;
+          result[index] = {
+            status: "fulfilled",
+            value: value,
+          };
           if (count === length)
             // 在promise.all上面改造一下，resolve的时候要把状态也返回出去
-            resolve({
-              status: "fulfilled",
-              value: value,
-            });
+            resolve(result);
         },
         // 在promise.all上面改造一下，原来reject的时候也要resolve数据
         (err) => {
           count++;
-          result[index] = err;
-          if (count === length)
-            resolve({
-              status: "rejected",
-              value: err,
-            });
+          result[index] = {
+            status: "rejected",
+            value: err,
+          };
+          if (count === length) resolve(result);
         }
       );
     });
@@ -264,44 +263,54 @@ MyPromise.allSettled = function(promiseList) {
 };
 
 MyPromise.allSettled2 = function (promises) {
-  return MyPromise.all(promises.map((p) => Promise.resolve(p).then((res) => ({
-    status: 'fulfilled',
-    value: res,
-  })).catch((err) => ({
-    status: 'rejected',
-    value: err,
-  }))));
+  return MyPromise.all(
+    promises.map((p) =>
+      Promise.resolve(p)
+        .then((res) => ({
+          status: "fulfilled",
+          value: res,
+        }))
+        .catch((err) => ({
+          status: "rejected",
+          value: err,
+        }))
+    )
+  );
 };
 
 MyPromise.prototype.catch = function (onRejected) {
-  return this.then(null, onRejected)
-}
+  return this.then(null, onRejected);
+};
 
 MyPromise.prototype.finally = function (fn) {
-  fn = typeof fn === 'function' ? fn : () => {}
-  return this.then(() => {
-    fn()
-  }).catch(() => {
-    fn()
-  })
-}
+  fn = typeof fn === "function" ? fn : () => {};
+  return this.then((value) => {
+    fn();
+    return value;
+  }).catch((e) => {
+    fn();
+    throw e;
+  });
+};
 
 MyPromise.retry = function (promiseCreator, times, delay) {
   return new MyPromise((resolve, reject) => {
-    function attempt () {
-      promiseCreator().then(data => {
-        resolve(data)
-      }).catch(err => {
-        if (times === 0) {
-          reject(err)
-        } else {
-          times--
-          setTimeout(attempt, delay);
-        }
-      })
+    function attempt() {
+      promiseCreator()
+        .then((data) => {
+          resolve(data);
+        })
+        .catch((err) => {
+          if (times === 0) {
+            reject(err);
+          } else {
+            times--;
+            setTimeout(attempt, delay);
+          }
+        });
     }
-    attempt()
-  })
-}
+    attempt();
+  });
+};
 
 module.exports = MyPromise;
