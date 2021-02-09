@@ -1,22 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <style>
-    /* -- */
-  </style>
-  <body>
-    <label> Click me <input type="text" /> </label>
-    <script>
-      document.querySelector("label").addEventListener("click", function () {
-        console.log(1);
-      });
-      document.querySelector("input").addEventListener("click", function () {
-        console.log(2);
-      });
-    </script>
-  </body>
-</html>
+<body>
+  <div id="id">
+      aaa
+  </div>
+  <script>  
+  
+    let ul = []
+    document.querySelector('#id').addEventListener('click', () => {
+      for(let i=0;i<100;i++){
+        ul.push(document.createElement('div'))
+      }
+    })
+  </script>
+</body>
+<script>
+</script>

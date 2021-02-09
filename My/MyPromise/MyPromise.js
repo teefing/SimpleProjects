@@ -5,6 +5,7 @@
 const PENDING = "pending";
 const FULFILLED = "fulfilled";
 const REJECTED = "rejected";
+global.totalPromises = []
 class MyPromise {
   /** 默认为等待态 */
   status = PENDING;
@@ -16,12 +17,14 @@ class MyPromise {
   successCallbacks = [];
   /** 拒绝时的回调队列 */
   failCallbacks = [];
+  id = Math.random().toString(16).slice(-8)
 
   constructor(executor) {
     /** promise同步代码执行时的错误处理 */
     try {
       /** 在创建promise时执行执行器函数 */
       executor(this.resolve, this.reject);
+      totalPromises.push(this)
     } catch (e) {
       this.reject(e);
     }
@@ -55,6 +58,8 @@ class MyPromise {
   then = (onSuccess, onFail) => {
     let promise2;
     const resolvePromise = (promise2, x, resolve, reject) => {
+      console.log('x: ', x);
+      console.log('resolvePromise promise2: ', promise2.id, promise2.status);
       /**处理promise循环调用自身的情况 */
       if (promise2 === x) {
         return reject(new TypeError("不允许promise循环调用自身"));
@@ -112,22 +117,20 @@ class MyPromise {
       /** 如果是PENDING状态，存储回调事件，否则直接执行 */
       switch (this.status) {
         case FULFILLED:
-          console.log(111);
           successCallback(resolve, reject);
           break;
         case REJECTED:
-          console.log(222);
           failCallback(resolve, reject);
           break;
         case PENDING:
-          console.log(333);
           this.successCallbacks.push(() => successCallback(resolve, reject));
           this.failCallbacks.push(() => failCallback(resolve, reject));
           break;
         default:
       }
     });
-
+    console.log('then promise2: ', promise2.id, promise2.status);
+    
     return promise2;
   };
 

@@ -1,0 +1,34 @@
+<body>
+  <div id="id">
+      divqqqq
+  </div>
+  <script>  
+  
+  window.onload = function(){
+      setTimeout(()=>{
+          document.querySelector('#id').innerHTML='red';
+          document.querySelector('#id').innerHTML='red2';
+          document.querySelector('#id').innerHTML='red3';
+          document.querySelector('#id').innerHTML='red4';
+          document.querySelector('#id').innerHTML='red5';
+          document.querySelector('#id').innerHTML='red6';
+          document.querySelector('#id').innerHTML='red7';
+          document.querySelector('#id').innerHTML='red8';
+          document.querySelector('#id').innerHTML='red9';
+          Promise.resolve().then(()=>{
+            console.log(document.querySelector('#id').innerHTML)
+              var now =Date.now();
+              while(Date.now()-now<4000){
+              }
+              console.log("微任务执行完成")
+          })
+          var now =Date.now();
+          while(Date.now()-now<4000){
+          }
+          console.log("宏任务执行完成")
+
+      },1000)
+  }
+
+  </script>
+</body>
