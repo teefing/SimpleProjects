@@ -23,11 +23,11 @@ class Observer {
 }
 
 let [person, observe] = new Observer({ name: 1, age: 2 });
-let unsubscribe = observe((target, key, value) => {
+let unobserve = observe((target, key, value) => {
   console.log("target, key, value: ", target, key, value);
 });
 
 person.name = 'bob' // target, key, value:  { name: 'bob', age: 2 } name bob
 
 unsubscribe()
-person.name = 'aaa'
+person.name = 'aaa' // 无输出

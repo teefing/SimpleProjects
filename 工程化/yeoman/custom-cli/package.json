@@ -1,0 +1,11 @@
+{
+  "name": "custom-cli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "bin": "./cli.js",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "inquirer": "^7.3.3"
+  }
+}
