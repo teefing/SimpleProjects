@@ -9,14 +9,14 @@ function isReferenceType(o) {
  * 4. 引入WeakMap解决循环引用问题
  * 5. 遍历原对象中的数据，将数据通过深拷贝的方式赋值给新对象
  */
-function deepClone(obj, hash = new WeakMap()) {
+function deepClone(obj, hash = new WeakMap(), parent) {
   if (!isReferenceType(obj)) {
     return obj;
   }
 
   if (obj instanceof Date) return new Date(obj);
   if (obj instanceof RegExp) return new RegExp(obj);
-  if (obj instanceof Function) return obj.bind({});
+  if (obj instanceof Function) return obj.bind(parent);
 
   const newObj = new obj.constructor();
 
@@ -27,7 +27,7 @@ function deepClone(obj, hash = new WeakMap()) {
   hash.set(obj, newObj);
 
   Reflect.ownKeys(obj).forEach((key) => {
-    newObj[key] = deepClone(obj[key], hash);
+    newObj[key] = deepClone(obj[key], hash, newObj);
   });
 
   return newObj;
