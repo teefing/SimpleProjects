@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index</title>
+    <style>
+      ul {
+        width: 500px;
+        background: #ddd;
+        margin: 50px auto;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+
+        li {
+          width: 150px;
+
+          .g-img-wrapper {
+            position: relative;
+            height: 100px;
+          }
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 50% 100%;
+          }
+
+          p {
+            font-size: 14px;
+            color: #333;
+            line-height: 2;
+          }
+        }
+      }
+
+      img.error {
+        position: relative;
+        display: inline-block;
+        width: 150px;
+        height: 100px;
+      }
+      img.loading {
+        position: relative;
+        display: inline-block;
+        width: 150px;
+        height: 100px;
+        background-color: #999;
+        background-image: url(./loading.svg);
+        background-size: 100% 100%;
+      }
+      img.before::before {
+        content: "加载中";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+      }
+
+      img.error::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: #999;
+        background: url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw8QEA8PERAPEA4PEA0OEA8PDw8NDw8QFREWFhURFRUYHSggGBolGxUVITEhJSkrLi4uFx8zODMsNygtLisBCgoKBQUFDgUFDisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAP0AyAMBIgACEQEDEQH/xAAZAAEBAQEBAQAAAAAAAAAAAAAAAgEDBwT/xAAnEAEBAAIBBAICAgMBAQAAAAAAAQIRIQMxQVESgWFxE5EisdHhof/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwD2CKTFAAAAAAAAAAy2TuDRz+dvb+63p5XmXvAWAAAAyxoDn0749Jyu7+ldTjlzxxt/9BVp3/6qdP3yuQEfx3zlR0ATFJigAAAAAAGZZSMz3q6T08J3A+Vvaa/NbOnPPP7Mc5vR1M9agK0nLHmWE6k1tHq23nxAdhy5x87n+nUAAAAAAAAAAExSYoAAAAAABzw4uvuOiOpPPmA2Y+XPe7b9Lyz4/bnAVZxVXVjn8vXK50/q/gGZXjXmuqccNKAAAAAAAAAABKb1PXLcsdqkBzsy77+ovGqRhNcAsAAAAAHDLG9l49L3/ToAyTTQAAAAAAAAAE5ZyJ3b24B0HLLH46vf2wHSuc6t+m9S8ftkgKyu+Pupxxl8cxt4u/bbed/2Dene89Lc+nzbfqOgAAAAAAAAAAAAAAIy6kn7Z/lfxGY8W/23q52a4BWGEikdS6icMqDpl25HPW93+oA3Pwj5Lyx2rHGTwCMZfpU6c9LAAAAAAAAAAZaDRkrQAAAAR1J59KlKjC63PXIM6l3deiJxvn2bt7QFY3V57eGLxxvnkBsUmKAAAAAAABmWUncGst0j5W9uPzWzp++QZ87e0+z+Pffn/ToA59Pi2fcdHLLKb87npeOUoKAAAAR1MN9lgOePSn7XGgAAJikxQAAAAAACepNxQCcLuJ6dvknF17VndS0HPO7vdtt1+7pOKrNwG5TWvXZmXFlLnxq72Sb16n/0HUIAAAAAAAAAmKSy9T1yC0/Odk/G3vfqGWHHHcHQThltQAAAAI6mO5+ZyjPLep912cv4uQT8lTC3v/UdJJGgyYtAAAAAAAAAAAEXHapIjOW9jO6x/PYFzTMspHLCLx5t/AMxy14sjpKnC+KzpeZ+QdAAAAAAAAAAAAAABOWcn/EfO+tQHUAAAEued3ZPS7lrX25S+fYKb53O/mMmFv4/26Y4SAjd7/G7X08dKAAAAAAAAAAAAcst22b49ArLOfu/hlmV78Q4i/lxsGY4yNym4jHqxueXifdBvTvHKnKS95d/teGWwUACMptuOMhFAAAAAAAAAAAAAAAOfUna+nRlgMuMqepxNHT449Jyu7+gbI3Dvf7Tts/y8X9g2XVs8dzp97fdP477q5AaACYpMUAAAAACcspAUy5SI3b24jZ05+77Bnyt7T7phbuyrkTnjzLAWAAAAADn1PbnjjX0AOePTn7dIAAAAAJikxQAAAAJz7VnTxndbljxdfcBWPUlujqZ6b8Z3ct7toL/AJOL+E2dt757RtnFbvcBl487jq45dpPNdYDQAAAAAAAAAAATFOef+l43YNAAAAR1Z58xYDnllx+0TsZYXsrHp+wTMvU2uYfV/C5NNBOOEigAAAAAAAAAAAABLMOPTM52ZhhLvgHUR0r3nqrAAAAAAAAAAAAAAAGZXTlM7lfQOmWcif8AK/iKmEigcssfjq/26lm04zXAKAB//9k=);
+      }
+
+      img.error::after {
+        content: attr(alt);
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        padding: 5px 10px;
+        background: #000;
+        color: #eee;
+        font-size: 12px;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="g-container">
+      <li>
+        <div class="g-img-wrapper">
+          <img
+            src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3170239013,3203606209&fm=26&gp=0.jpg"
+            alt="图片描述"
+            onerror="this.classList.add('error');"
+            class="loading"
+            onload="this.classList.remove('loading');"
+          />
+        </div>
+        <p>图片描述</p>
+      </li>
+      <li>
+        <div class="g-img-wrapper">
+          <img
+            src="https://s2.best-wallpaper.net/waller/iphone/2005/Some-mushrooms-vegetable-table_iphone_1242x2688.jpg"
+            alt="图片alt信息图片alt信息图片alt信息"
+            onerror="this.classList.add('error');"
+            class="loading"
+            onload="this.classList.remove('loading');"
+          />
+        </div>
+        <p>图片描述</p>
+      </li>
+    </ul>
+  </body>
+</html>
+<script></script>

@@ -1,10 +1,11 @@
-//带有字符串类型参数的函数  
-function add(a:string, b:string): string;    
-  
-//带有数字类型参数的函数
-function add(a:number, b:number): number;    
-  
-//函数定义
-function add(a: any, b:any): any {    
-    return a + b;    
-}  
+const tuple = <T extends string[]>(...args: T) => args;
+
+const ButtonTypes = tuple('default', 'primary', 'ghost', 'dashed', 'link', 'text');
+
+type ButtonType = typeof ButtonTypes[number]
+
+type O = {
+    [key: string]: 1 | 2 | 3;
+}
+const obj: O = {a: 1, b: 2, c: 3}
+type test = typeof obj[number]
