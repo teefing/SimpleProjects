@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <div onclick="alert(1)">111</div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    
+  </body>
 </html>
-
 <script>
+  function setInterval(cb, interval){
+    let timer;
+    const now = Date.now
+    let nextInvokeTime = now() + interval
+    const loop = () => {
+      timer = requestAnimationFrame(loop)
+      if(now() > nextInvokeTime) {
+        nextInvokeTime = now() + interval
+        cb(timer)
+      }
+    }
+
+    timer = requestAnimationFrame(loop)
+    return timer
+  }
+
+  setInterval(() => {
+    console.log(111)
+  }, 1000);
 </script>
