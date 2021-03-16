@@ -1,33 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    
-  </body>
-</html>
-<script>
-  function setInterval(cb, interval){
-    let timer;
-    const now = Date.now
-    let nextInvokeTime = now() + interval
-    const loop = () => {
-      timer = requestAnimationFrame(loop)
-      if(now() > nextInvokeTime) {
-        nextInvokeTime = now() + interval
-        cb(timer)
+<head>
+  <style>
+      div{
+          width: 100px;
+          height: 100px;
+          background: #4CAF50;
+          float: left;
       }
-    }
-
-    timer = requestAnimationFrame(loop)
-    return timer
-  }
-
-  setInterval(() => {
-    console.log(111)
-  }, 1000);
-</script>
+      section{
+          width: 300px;
+          /* border: 1px solid red;
+          margin: 100px; */
+      }
+  </style>
+</head>
+<body>
+  <section>
+      <div>我在左边浮动</div>
+      <p>这是一段文字，BFC 即 Block Formatting Contexts (块级格式化上下文),是页面盒模型布局中的一种 CSS 渲染模式，相当于一个独立的容器，里面的元素和外部的元素相互不影响。</p>
+  </section>
+</body>

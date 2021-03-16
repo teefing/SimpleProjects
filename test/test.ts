@@ -1,11 +1,28 @@
-const tuple = <T extends string[]>(...args: T) => args;
+import "reflect-metadata";
 
-const ButtonTypes = tuple('default', 'primary', 'ghost', 'dashed', 'link', 'text');
-
-type ButtonType = typeof ButtonTypes[number]
-
-type O = {
-    [key: string]: 1 | 2 | 3;
+function classDecorator(): ClassDecorator {
+  return (target) => {
+    // 在类上定义元数据，key 为 `classMetaData`，value 为 `a`
+    Reflect.defineMetadata("classMetaData", "a", target);
+  };
 }
-const obj: O = {a: 1, b: 2, c: 3}
-type test = typeof obj[number]
+
+function methodDecorator(): MethodDecorator {
+  return (target, key, descriptor) => {
+    // 在类的原型属性 'someMethod' 上定义元数据，key 为 `methodMetaData`，value 为 `b`
+    Reflect.defineMetadata("methodMetaData", "b", target, key);
+  };
+}
+
+@classDecorator()
+class SomeClass {
+  @methodDecorator()
+  someMethod() {}
+}
+
+console.log(Reflect.getMetadata("classMetaData", SomeClass));
+// 'a'
+console.log(
+  Reflect.getMetadata("methodMetaData", new SomeClass(), "someMethod")
+); // 'b'
+console.log(Reflect.getMetadata('design:type', SomeClass))

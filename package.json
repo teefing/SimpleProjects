@@ -25,6 +25,7 @@
     "babel": "^6.23.0",
     "babel-preset-env": "^1.7.0",
     "benchmark": "^2.1.4",
+    "reflect-metadata": "^0.1.13",
     "taobao-mini-sdk": "^0.2.1"
   }
 }
