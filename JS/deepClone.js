@@ -43,11 +43,13 @@ const obj1 = {
   date: new Date(),
   arr: [1, 2, 3],
   func: add.bind({}, 1),
+  [Symbol()]: 'symbol'
 };
-obj1.obj = obj1;
+// obj1.obj = obj1;
 
-console.log(deepClone(obj1).func(2, 3));
+// console.log(deepClone(obj1).func(2, 3));
 
+console.log(deepClone(obj1))
 
-deepClone(JSON.parse('{"__proto__": {"admin": 1}}'));
-console.log(({}).admin);
+// deepClone(JSON.parse('{"__proto__": {"admin": 1}}'));
+// console.log(({}).admin);

@@ -1,4 +1,3 @@
-const util = require("util");
 const parser = require("@babel/parser");
 const traverse = require("@babel/traverse").default;
 const t = require("@babel/types");

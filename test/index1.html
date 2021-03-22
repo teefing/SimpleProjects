@@ -1,12 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Index2</title>
-</head>
-<body>
+<style>
+  .customer-service-btn{
+  top:12% !important;
+  }
+  .nav-bar{
+      min-height: 35px;
+      background:#FFFFFF;
+      text-align:center;
+      line-height:35px;
+      font-size:16px;
+      position:relative;
+      display:block;
+      padding-top: 27px;
+  }
+  .goback{
+    position:absolute;
+   background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAgCAMAAADHYLP9AAAAOVBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC8dlA9AAAAEnRSTlMAAevfMCIfmJSM4ZAsiezBcXXiDOJmAAAATUlEQVQoz63KSw6AIAxF0aLWD6jA2/9iIQwpCaRwhyeX+p2eBe2wLAj/oaRNQzxGNtO7hsgDqIhitq8yc83jo8d7Hl0TzcjpgEACC8kSz5IHcd8/MFAAAAAASUVORK5CYII=) no-repeat;
+      background-size:100%;
+      width:15px;
+      height:29px;
+      left:13px;
+      top:30px;
+      text-decoration:none
+  }
+  </style>
   
-</body>
-</html>l
+  <a class="nav-bar" id="topbar">
+            <span class="goback available"> 
+            </span>
+            <div id="J_topTitle">积分商城</div>
+          </a>
+  
+  <script>
+      //如果是商城首页，则隐藏导航栏
+      //var pageId = document.body.getAttribute('duiba-page-id');
+      //if(pageId && pageId == 66){   
+      //document.getElementById("topbar").style.display="none";
+      //}
+  
+      document.querySelector('#J_topTitle').innerText = document.title;
+      setTimeout(function () {
+        document.querySelector('#J_topTitle').innerText = document.title;
+      },500)
+      document.querySelector('.nav-bar .goback.available') && document.querySelector('.nav-bar .goback.available').addEventListener('click', function(e){
+           window.history.go(-1);
+      }, false);
+  </script>
