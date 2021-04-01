@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn"></button>
+  </body>
+</html>
+<script>
+// 1.最普通的event
+// let event = new Event('my-event')
+
+// 2.使用CustomEvent可以传递参数
+// let event = new CustomEvent('my-event', {
+//   detail: {
+//     value: 1
+//   }
+// })
+
+// 3.使用document.createEvent
+let event = document.createEvent("CustomEvent")
+event.initEvent('my-event', true, true)
+
+let btn = document.querySelector('#btn')
+btn.addEventListener('my-event', (e) => {
+  console.log(e)
+  console.log(e.detail)
+})
+setTimeout(() => {
+  btn.dispatchEvent(event)
+}, 2000);
+</script>

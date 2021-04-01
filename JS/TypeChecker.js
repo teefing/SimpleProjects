@@ -6,19 +6,20 @@ let TypeChecker = new Proxy(
       if ((matchRes = key.match(/is(.*)/))) {
         let type = matchRes[1];
         if (target[key]) return target[key];
-        const testFunc = function(t) {
-          return Object.prototype.toString.call(t).slice(8, -1) === type;
+        const judgeFunc = function(t) {
+          return Object.prototype.toString.call(t).slice(8, -1).toLowerCase() === type.toLowerCase();
         };
-        target[key] = testFunc;
-        return testFunc;
+        target[key] = judgeFunc;
+        return judgeFunc;
       } else {
         return function() {
-          console.log("invalid function");
+          throw new Error("invalid function")
         };
       }
     },
   }
 );
 
-console.log(TypeChecker.isArray([]));
-console.log(TypeChecker.isRegExp(/aa/));
+console.log(TypeChecker.isArray([])); // true
+console.log(TypeChecker.isRegExp(/aa/)); // true
+console.log(TypeChecker.isNumber('1')); // false
