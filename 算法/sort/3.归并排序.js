@@ -1,5 +1,6 @@
 const { defaultSortFunc } = require("./utils");
 
+// 稳定
 const merge = (leftArr, rightArr, compareFn) => {
   let res = [];
   while (leftArr.length && rightArr.length) {
