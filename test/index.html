@@ -1,30 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
   <style>
-    .ellipse {
-      white-space: nowrap;
-      text-overflow: ellipsis;
+    .out-box {
+      width: 200px;
+      height: 200px;
+      background-color: gray;
+      border: 1px solid blueviolet;
     }
-    .ellipse-multi {
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 3;
+      
+    .inner-box {
+      width: 50px;
+      height: 50px;
+      background-color: red;
+      border: 1px solid #000;
     }
   </style>
-  <body>
+</head>
+<body>
+  <div class="out-box">
     
-  </body>
+  </div>
+  <div class="inner-box" draggable="true" data-id="111"></div>
+</body>
 </html>
 <script>
-let canvas = document.createElement('canvas')
-let val = canvas.toDataURL('image/webp')
-if(val.startsWith('data:image/webp')) {
-  console.log('webp supported')
-}
+  document.addEventListener('DOMContentLoaded', () => {
+    let inner = document.querySelector('.inner-box')
+    let out = document.querySelector('.out-box')
+    inner.addEventListener('dragstart', (ev) => {
+      console.log('dragstart')
+      ev.dataTransfer.effectsAllowed = "move";
+      ev.dataTransfer.setData('text/plain', ev.target.dataset.id)
+      
+      ev.target.style.opacity = 0.01
+    })
+    // inner.addEventListener('drag', () => {
+    //   console.log('dragging')
+    // })
+    inner.addEventListener('dragend', (ev) => {
+      console.log('dragend')
+      ev.target.style.opacity = 1
+    })
+    out.addEventListener('dragenter', (ev) => {
+      console.log('dragenter')
+      ev.target.style.border = '10px solid green'
+    })
+    // out.addEventListener('dragover', () => {
+    //   console.log('dragover')
+    // })
+    out.addEventListener('dragleave', (ev) => {
+      console.log('dragleave')
+      ev.target.style.border = '1px solid blueviolet'
+    })
+  })
 </script>

@@ -295,11 +295,9 @@ export function looseEqual(a, b) {
           })
         );
       } else {
-        /* istanbul ignore next */
         return false;
       }
     } catch (e) {
-      /* istanbul ignore next */
       return false;
     }
   } else if (!isObjectA && !isObjectB) {
@@ -332,4 +330,11 @@ export function once(fn) {
       fn.apply(this, arguments);
     }
   };
+}
+
+
+export function isWebpSupport(){
+  let canvas = document.createElement('canvas')
+  let dataUrl = canvas.toDataURL('image/webp')
+  return dataUrl.startsWith('data:image/webp')
 }
